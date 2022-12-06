@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-
+<?php include 'includes/db.php'?>
 <?php include 'includes/header.php'?>
 
 <body>
@@ -48,7 +48,13 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="card-title"><i class="fa fa-barcode fa-3x text-danger"> 123</i></h3>
+                                <h3 class="card-title"><i class="fa fa-barcode fa-3x text-danger">
+                                    <?php
+                                        $sql = "SELECT id FROM product";
+                                        $result = $conn->query($sql);
+                                        echo($result->num_rows);
+                                    ?>
+                                </i></h3>
                                 <h6 class="card-subtitle">Number of Products</h6>
                                 
                             </div>
@@ -57,7 +63,13 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="card-title"><i class="fa fa-users fa-3x text-info"> 79</i></h3>
+                                <h3 class="card-title"><i class="fa fa-users fa-3x text-info"> 
+                                <?php
+                                        $sql = "SELECT id FROM client";
+                                        $result = $conn->query($sql);
+                                        echo($result->num_rows);
+                                    ?>
+                                </i></h3>
                                 <h6 class="card-subtitle">Number of Clients</h6>
                                 
                             </div>

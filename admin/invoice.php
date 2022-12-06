@@ -17,9 +17,9 @@
         <div class="page-wrapper">
             <div class="page-breadcrumb">
                 <div class="row align-items-center">
-                    <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="page-title mb-0 p-0"><i class="mdi me-2 mdi-file-multiple"></i> Invoice</h3>
-                        <a href="add-invoice.php" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-plus"></i> Add Invoice</a>
+                    <div class="col-md-12 col-12 col-sm-12 col-lg-12 align-self-center" style="display:flex;flex-direction:row;justify-content:space-between">
+                        <h3 class="page-title mb-0 p-0"><i class="mdi me-2 mdi me-2 mdi-cards-variant"></i>Invoice</h3>
+                        <a href="add-invoice.php" class="btn btn-success d-md-inline-block btn-sm text-white"><i class="mdi mdi-plus"></i> Add Invoice</a>
                     </div>
                 </div>
             </div>

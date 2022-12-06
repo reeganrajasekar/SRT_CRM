@@ -35,7 +35,7 @@
                         </div>
                         <div class="modal-body">
                             <form action="/admin/create/product.php" method="POST">
-                                <div class="form-floating mb-3 mt-3">
+                                <div class="form-floating mb-3">
                                     <input type="text" class="form-control" required id="code" placeholder="Enter Product Code" name="code">
                                     <label for="code">Product Code</label>
                                 </div>
@@ -72,7 +72,22 @@
                                 <h4 class="card-title"><i class="mdi me-2 mdi me-2 mdi-cards-variant"></i> Product Lists</h4>
                                 <div class="table-responsive">
                                     <?php
-                                    $sql = "SELECT * FROM product order by name ASC";
+
+                                    $results_per_page = 5;   
+                                    $query = "select *from product";  
+                                    $result = mysqli_query($conn, $query);  
+                                    $number_of_result = mysqli_num_rows($result);  
+                                    $number_of_page = ceil ($number_of_result / $results_per_page);  
+
+                                    if (!isset ($_GET['page']) ) {  
+                                        $page = 1;  
+                                    } else {  
+                                        $page = $_GET['page'];  
+                                    } 
+
+                                    $page_first_result = ($page-1) * $results_per_page; 
+
+                                    $sql = "SELECT * FROM product order by name ASC LIMIT " . $page_first_result . ',' . $results_per_page;
                                     $result = $conn->query($sql);
                                     
                                     if ($result->num_rows > 0) {
@@ -88,32 +103,83 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <?php
-                                            while($row = $result->fetch_assoc()) {
-                                            ?>
+                                    <?php
+                                    while($row = $result->fetch_assoc()) {
+                                    ?>
                                             <tr>
                                                 <td><?php echo($row['code'])?></td>
                                                 <td><?php echo($row['name'])?></td>
                                                 <td><?php echo($row['rate'])?></td>
                                                 <td><?php echo($row['stock'])?></td>
                                                 <td>
-                                                <a href="#" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-pencil"></i> edit</a>
+                                                <button data-bs-toggle="modal" data-bs-target="#myModal<?php echo($row["id"])?>" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-pencil"></i> edit</button>
                                                 <a onclick="return confirm('Do you want to delete?')" href="/admin/delete/product.php?id=<?php echo($row['id'])?>" class="btn btn-danger d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i> delete</a>
                                                 </td>
+
+                                                <div class="modal fade" id="myModal<?php echo($row["id"])?>">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content" style="border-radius:10px !important">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Edit <?php echo($row["name"])?></h4>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="/admin/edit/product.php" method="POST">
+                                                                <input type="hidden" name="id" value="<?php echo($row["id"])?>">
+                                                                <div class="form-floating mb-3 ">
+                                                                    <input type="text" class="form-control" value="<?php echo($row["code"])?>" required id="code" placeholder="Enter Product Code" name="code">
+                                                                    <label for="code">Product Code</label>
+                                                                </div>
+
+                                                                <div class="form-floating mt-3 mb-3">
+                                                                    <input type="text" class="form-control" value="<?php echo($row["name"])?>" required id="name" placeholder="Enter Product Name" name="name">
+                                                                    <label for="name">Product Name</label>
+                                                                </div>
+
+                                                                <div class="form-floating mt-3 mb-3"> 
+                                                                    <input type="number" class="form-control" value="<?php echo($row["rate"])?>" required id="prize" placeholder="Enter Product Prize" name="rate">
+                                                                    <label for="prize">Product Prize</label>
+                                                                </div>
+
+                                                                <div class="form-floating mt-3 mb-3">
+                                                                    <input type="number" class="form-control" value="<?php echo($row["stock"])?>" required id="stock" placeholder="Enter Product Stock" name="stock">
+                                                                    <label for="stock">Product Stock</label>
+                                                                </div>
+
+                                                                <button class="btn btn-primary w-100" style="background-color:#1e88e5;font-weight:700;height:50px">Update</button>
+                                                            </form>
+                                                        </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </tr>
-                                            <?php
-                                                }
-                                            ?>
+                                    <?php
+                                        }
+                                    ?>
                                                 </tbody>
                                             </table>
                                             
-                                            <?php
-                                            } else {
-                                                echo "<p style='text-align:center'>No Products Found</p>";
-                                            }
-                                            $conn->close();
-                                            ?>
+                                    <?php
+                                    } else {
+                                        echo "<p style='text-align:center'>No Products Found</p>";
+                                    }
+                                    $conn->close();
+                                    ?>
                                             
+
+                                <p style="text-align:center;line-height:3.5;font-size:16px">
+                                    <?php 
+                                    for($page = 1; $page<= $number_of_page; $page++) { 
+                                        if($page==$_GET['page']){
+                                            echo '<a style="margin:4px;padding:12px;border-radius:2px;border:2px solid #1e88e5;background-color:#1e88e5;font-weight:600;color:#fff;text-decoration:none" href = "?page=' . $page . '">' . $page . ' </a>';  
+                                        }else{
+                                            echo '<a style="margin:4px;padding:10px;border-radius:2px;border:1px solid #aaa;color:#444;text-decoration:none" href = "?page=' . $page . '">' . $page . ' </a>';  
+                                        }
+                                    }  
+                                    ?>
+                                </p>
                                 </div>
                             </div>
                         </div>
