@@ -2,6 +2,7 @@
 <html dir="ltr" lang="en">
 
 <?php include 'includes/header.php'?>
+<?php include 'includes/db.php'?>
 
 <body>
     <div class="preloader">
@@ -25,12 +26,66 @@
                 </div>
             </div>
             <div class="container-fluid">
-                <div class="row">
+            <div class="row">
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h6><i class="fa fa-money fa-3x text-info"> Php 36,000.00</i></h6>
+                                <h6><i class="fa fa-money fa-3x text-info"> ₹
+                                    <?php
+                                        $sql = "SELECT total FROM bill";
+                                        $result = $conn->query($sql);
+                                        $total=0;
+                                        if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                $total=$total+$row["total"];
+                                            }
+                                        }
+                                        echo($total);
+                                    ?>
+                                </i></h6>
                                 <h6 class="card-subtitle">Total Amount</h6>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6><i class="fa fa-money fa-3x text-success">₹
+                                    <?php
+                                        $sql = "SELECT paid FROM bill";
+                                        $result = $conn->query($sql);
+                                        $total=0;
+                                        if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                $total=$total+$row["paid"];
+                                            }
+                                        }
+                                        echo($total);
+                                    ?>
+                                </i></h6>
+                                <h6 class="card-subtitle">Total Paid</h6>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6><i class="fa fa-money fa-3x text-warning">₹
+                                    <?php
+                                        $sql = "SELECT paid,total FROM bill";
+                                        $result = $conn->query($sql);
+                                        $total=0;
+                                        if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                $total=$total+($row["total"]-$row["paid"]);
+                                            }
+                                        }
+                                        echo($total);
+                                    ?>
+                                </i></h6>
+                                <h6 class="card-subtitle">Total Due</h6>
                                 
                             </div>
                         </div>
@@ -38,8 +93,29 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title"><i class="mdi me-2 mdi-cash-usd"></i> Payment List</h4>
+                                <h4 class="card-title"><i class="mdi me-2 mdi-file-multiple"></i> Invoice List</h4>
                                 <div class="table-responsive">
+                                <?php
+
+                                $results_per_page = 10;   
+                                $query = "select * from bill";  
+                                $result = mysqli_query($conn, $query);  
+                                $number_of_result = mysqli_num_rows($result);  
+                                $number_of_page = ceil ($number_of_result / $results_per_page);  
+
+                                if (!isset ($_GET['page']) ) {  
+                                    $page = 1;  
+                                } else {  
+                                    $page = $_GET['page'];  
+                                } 
+
+                                $page_first_result = ($page-1) * $results_per_page; 
+
+                                $sql = "SELECT * FROM bill order by id DESC LIMIT " . $page_first_result . ',' . $results_per_page;
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                ?>
                                     <table class="table user-table">
                                         <thead>
                                             <tr>
@@ -52,24 +128,67 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Jared Murphy</td>
-                                                <td>Dec 03, 2021</td>
-                                                <td>Cash</td>
-                                                <td>Php 5,000.00</td><td>
-                                                <a href="#" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-pencil"></i> edit</a>
-                                                <a href="#" class="btn btn-danger d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i> delete</a>
-                                                </td>
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
+                                <?php
+                                while($row = $result->fetch_assoc()) {
+                                ?>
+                                        <tr>
+                                            <td><?php echo($row['id'])?></td>
+                                            <td>
+                                                <?php
+                                                    $user = $row['userid'];
+                                                    $sql="SELECT name from client where id='$user'";
+                                                    $results = $conn->query($sql);
+                                                    while($row1 = $results->fetch_assoc()){
+                                                        $username= $row1['name'];
+                                                        echo($row1['name']);
+                                                    }
+                                                ?>
+                                            </td>
+                                            <td><?php echo($row['reg_date'])?></td>
+                                            <td><?php echo($row['payment'])?></td>
+                                            <td>₹ <?php echo($row['total'])?></td>
+                                            <td>
+                                            <a target="blank" href="/admin/bill_print.php?id=<?php echo($row['id'])?>" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i>Print</a>
+                                            <a onclick="return confirm('Do you want to delete?')" href="/admin/delete/invoice.php?id=<?php echo($row['id'])?>" class="btn btn-danger d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i> delete</a>
+                                            </td>
+
+                                        </tr>
+                                <?php
+                                    }
+                                ?>
+                                            </tbody>
+                                        </table>
+                                        
+                                <?php
+                                } else {
+                                    echo "<p style='text-align:center'>No Clients Found</p>";
+                                }
+                                $conn->close();
+                                ?>
+                                        
+
+                                <p style="text-align:center;line-height:3.5;font-size:16px">
+                                <?php 
+                                for($page = 1; $page<= $number_of_page; $page++) { 
+                                    if($page==$_GET['page']){
+                                        echo '<a style="margin:4px;padding:12px;border-radius:2px;border:2px solid #1e88e5;background-color:#1e88e5;font-weight:600;color:#fff;text-decoration:none" href = "?page=' . $page . '">' . $page . ' </a>';  
+                                    }else{
+                                        echo '<a style="margin:4px;padding:10px;border-radius:2px;border:1px solid #aaa;color:#444;text-decoration:none" href = "?page=' . $page . '">' . $page . ' </a>';  
+                                    }
+                                }  
+                                ?>
+                                </p>
+                                    
+                                
+                                
+                                
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>

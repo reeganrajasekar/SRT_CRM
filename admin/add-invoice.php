@@ -325,8 +325,7 @@ function form_valid(){
                                     <select required id="paymentmethod" name="paymentmethod" class="form-select shadow-none ps-0 border-0 form-control-line">
                                         <option value="" disabled selected hidden>Choose Payment Method</option>
                                         <option>Cash</option>
-                                        <option>Online (Gpay)</option>
-                                        <option>Account</option>
+                                        <option>Online (Gpay,etc.,)</option>
                                     </select>
                                 </div>
                             </div>
