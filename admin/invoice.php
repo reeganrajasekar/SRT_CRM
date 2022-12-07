@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <?php include 'includes/header.php'?>
+<?php include 'includes/db.php'?>
 
 <body>
     <div class="preloader">
@@ -28,7 +29,19 @@
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h6><i class="fa fa-money fa-3x text-info"> Php 36,000.00</i></h6>
+                                <h6><i class="fa fa-money fa-3x text-info"> ₹
+                                    <?php
+                                        $sql = "SELECT total FROM bill";
+                                        $result = $conn->query($sql);
+                                        $total=0;
+                                        if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                $total=$total+$row["total"];
+                                            }
+                                        }
+                                        echo($total);
+                                    ?>
+                                </i></h6>
                                 <h6 class="card-subtitle">Total Amount</h6>
                                 
                             </div>
@@ -37,7 +50,19 @@
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h6><i class="fa fa-money fa-3x text-success"> Php 20,000.00</i></h6>
+                                <h6><i class="fa fa-money fa-3x text-success">₹
+                                    <?php
+                                        $sql = "SELECT paid FROM bill";
+                                        $result = $conn->query($sql);
+                                        $total=0;
+                                        if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                $total=$total+$row["paid"];
+                                            }
+                                        }
+                                        echo($total);
+                                    ?>
+                                </i></h6>
                                 <h6 class="card-subtitle">Total Paid</h6>
                                 
                             </div>
@@ -46,7 +71,19 @@
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h6><i class="fa fa-money fa-3x text-warning"> Php 29,000.00</i></h6>
+                                <h6><i class="fa fa-money fa-3x text-warning">₹
+                                    <?php
+                                        $sql = "SELECT paid,total FROM bill";
+                                        $result = $conn->query($sql);
+                                        $total=0;
+                                        if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                $total=$total+($row["total"]-$row["paid"]);
+                                            }
+                                        }
+                                        echo($total);
+                                    ?>
+                                </i></h6>
                                 <h6 class="card-subtitle">Total Due</h6>
                                 
                             </div>
@@ -57,6 +94,27 @@
                             <div class="card-body">
                                 <h4 class="card-title"><i class="mdi me-2 mdi-file-multiple"></i> Invoice List</h4>
                                 <div class="table-responsive">
+                                <?php
+
+                                $results_per_page = 10;   
+                                $query = "select * from bill";  
+                                $result = mysqli_query($conn, $query);  
+                                $number_of_result = mysqli_num_rows($result);  
+                                $number_of_page = ceil ($number_of_result / $results_per_page);  
+
+                                if (!isset ($_GET['page']) ) {  
+                                    $page = 1;  
+                                } else {  
+                                    $page = $_GET['page'];  
+                                } 
+
+                                $page_first_result = ($page-1) * $results_per_page; 
+
+                                $sql = "SELECT * FROM bill order by id DESC LIMIT " . $page_first_result . ',' . $results_per_page;
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                ?>
                                     <table class="table user-table">
                                         <thead>
                                             <tr>
@@ -70,33 +128,92 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td><span class="badge bg-success">paid</span></td>
-                                                <td>Jared Murphy</td>
-                                                <td>Php 5,000.00</td>
-                                                <td>Php 5,000.00</td>
-                                                <td>Php 0.00</td>
-                                                <td>
-                                                <a href="#" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-pencil"></i> edit</a>
-                                                <a href="#" class="btn btn-danger d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i> delete</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td><span class="badge bg-warning">partially paid</span></td>
-                                                <td>Leroy Francis</td>
-                                                <td>Php 6,500.00</td>
-                                                <td>Php 5,500.00</td>
-                                                <td>Php 150.00</td>
-                                                <td>
-                                                <a href="#" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-pencil"></i> edit</a>
-                                                <a href="#" class="btn btn-danger d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i> delete</a>
-                                                </td>
-                                            </tr>
-                                            
-                                        </tbody>
-                                    </table>
+                                <?php
+                                while($row = $result->fetch_assoc()) {
+                                ?>
+                                        <tr>
+                                            <td><?php echo($row['id'])?></td>
+                                            <td><?php if($row['total']-$row['paid']==0){echo("<span class='badge bg-success'>paid</span>");}else{echo("<span class='badge bg-warning'>partially paid</span>");}?></td>
+                                            <td>
+                                                <?php
+                                                    $user = $row['userid'];
+                                                    $sql="SELECT name from client where id='$user'";
+                                                    $results = $conn->query($sql);
+                                                    while($row1 = $results->fetch_assoc()){
+                                                        $username= $row1['name'];
+                                                        echo($row1['name']);
+                                                    }
+                                                ?>
+                                            </td>
+                                            <td>₹ <?php echo($row['total'])?></td>
+                                            <td>₹ <?php echo($row['paid'])?></td>
+                                            <td>₹ <?php echo($row['total']-$row['paid'])?></td>
+                                            <td>
+                                            <button data-bs-toggle="modal" data-bs-target="#myModal<?php echo($row["id"])?>" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-pencil"></i> edit</button>
+                                            <a onclick="return confirm('Do you want to delete?')" href="/admin/delete/invoice.php?id=<?php echo($row['id'])?>" class="btn btn-danger d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i> delete</a>
+                                            </td>
+
+                                            <div class="modal fade" id="myModal<?php echo($row["id"])?>">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content" style="border-radius:10px !important">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Edit Invoice : <?php echo($username." - ".$row["id"])?></h4>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="/admin/edit/invoice.php" method="POST">
+                                                            <input type="hidden" name="id" value="<?php echo($row["id"])?>">
+                                                            <div class="form-floating mb-3">
+                                                                <input type="text" class="form-control"  value="<?php echo($username)?>" disabled>
+                                                                <label for="code">Client Name</label>
+                                                            </div>
+                                                            <div class="form-floating mb-3">
+                                                                <input type="number" class="form-control" value="<?php echo($row["total"])?>" disabled>
+                                                                <label for="code">Total Amount</label>
+                                                            </div>
+                                                            <div class="form-floating mb-3">
+                                                                <input type="number" class="form-control" value="<?php echo($row["paid"])?>" required id="paid"  name="paid">
+                                                                <label for="code">Paid</label>
+                                                            </div>
+
+                                                            <button class="btn btn-primary w-100" style="background-color:#1e88e5;font-weight:700;height:50px">Update</button>
+                                                        </form>
+                                                    </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </tr>
+                                <?php
+                                    }
+                                ?>
+                                            </tbody>
+                                        </table>
+                                        
+                                <?php
+                                } else {
+                                    echo "<p style='text-align:center'>No Clients Found</p>";
+                                }
+                                $conn->close();
+                                ?>
+                                        
+
+                                <p style="text-align:center;line-height:3.5;font-size:16px">
+                                <?php 
+                                for($page = 1; $page<= $number_of_page; $page++) { 
+                                    if($page==$_GET['page']){
+                                        echo '<a style="margin:4px;padding:12px;border-radius:2px;border:2px solid #1e88e5;background-color:#1e88e5;font-weight:600;color:#fff;text-decoration:none" href = "?page=' . $page . '">' . $page . ' </a>';  
+                                    }else{
+                                        echo '<a style="margin:4px;padding:10px;border-radius:2px;border:1px solid #aaa;color:#444;text-decoration:none" href = "?page=' . $page . '">' . $page . ' </a>';  
+                                    }
+                                }  
+                                ?>
+                                </p>
+                                    
+                                
+                                
+                                
                                 </div>
                             </div>
                         </div>

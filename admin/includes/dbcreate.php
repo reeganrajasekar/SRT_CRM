@@ -1,6 +1,24 @@
 <?php 
 require("./db.php");
 
+// Bill
+$sql = "CREATE TABLE bill (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    userid INT(6) UNSIGNED,
+    items JSON NOT NULL,
+    total INT(50) NOT NULL,
+    payment VARCHAR(50) NOT NULL,
+    paid INT(50) NOT NULL,
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (userid) REFERENCES client(id)
+)";
+    
+if ($conn->query($sql) === TRUE) {
+    echo "Table Bill created successfully<br>";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+
 // client
 $sql = "CREATE TABLE client (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,

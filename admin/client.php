@@ -67,7 +67,7 @@
                                 <div class="table-responsive">
                                 <?php
 
-                                    $results_per_page = 5;   
+                                    $results_per_page = 10;   
                                     $query = "select *from client";  
                                     $result = mysqli_query($conn, $query);  
                                     $number_of_result = mysqli_num_rows($result);  

@@ -30,7 +30,13 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="card-title"><i class="fa fa-file fa-3x text-warning"> 23</i></h3>
+                                <h3 class="card-title"><i class="fa fa-file fa-3x text-warning">
+                                    <?php
+                                        $sql = "SELECT id FROM bill";
+                                        $result = $conn->query($sql);
+                                        echo($result->num_rows);
+                                    ?>
+                                </i></h3>
                                 <h6 class="card-subtitle">Number of Invoice</h6>
                                 
                             </div>
@@ -39,7 +45,19 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="card-title"><i class="fa fa-money fa-3x text-success"> Php 900,000.00</i></h3>
+                                <h3 class="card-title"><i class="fa fa-money fa-3x text-success">₹
+                                    <?php
+                                        $sql = "SELECT paid FROM bill";
+                                        $result = $conn->query($sql);
+                                        $total=0;
+                                        if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                $total=$total+$row["paid"];
+                                            }
+                                        }
+                                        echo($total);
+                                    ?>
+                                </i></h3>
                                 <h6 class="card-subtitle">Total Collection</h6>
                                 
                             </div>

@@ -121,6 +121,7 @@ function getuser(){
      }else{
         $("#name").val(data.name)
         $("#address").val(data.address)
+        $("#mainuser").val(data.id)
         $("#mob").prop('disabled', true)
         $("#name").prop('disabled', true)
         $("#address").prop('disabled', true)
@@ -153,6 +154,16 @@ function adduser(){
    })
   }
 };
+
+
+function form_valid(){
+    if($("#mainuser").val()==""){
+        document.getElementById("mob").focus();
+        return false
+    }else{
+        return true
+    }
+}
 </script>
 
 
@@ -166,7 +177,9 @@ function adduser(){
             <div class="card-body">
                 <h4 class="card-title"><i class="mdi me-2 mdi-file-multiple"></i> Invoice Information</h4>
                     <div class="col-lg-12">
-                    <form class="form-horizontal form-material mx-2">
+                    <form onsubmit="return form_valid()" class="form-horizontal form-material mx-2" action="/admin/create/invoice.php" method="POST">
+                        <input type="hidden" value="" id="mainuser" name="userid">
+                        <input type="hidden" value="" id="overitems" name="overitems">
                             <div class="table-responsive">
                     <table class="table user-table">
                         <thead style="background-color:rgb(30,136,229);color:#fff">
@@ -184,6 +197,7 @@ function adduser(){
                             <script>
                                 sno=1;
                                 var i=0;
+                                document.getElementById('overitems').value= i+1;
                                 function addlist(i){
                                     document.getElementById("i"+i).innerHTML =`
                                     <td>
@@ -191,8 +205,8 @@ function adduser(){
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <select onchange="getproduct(${i})" id="itemid${i}" name="itemid${i}" class="form-select shadow-none ps-0 border-0 form-control-line">
-                                                <option>Choose Product</option>
+                                            <select required onchange="getproduct(${i})" id="itemid${i}" name="itemid${i}" class="form-select shadow-none ps-0 border-0 form-control-line">
+                                                <option value="" disabled selected hidden>Choose Product</option>
                                                 <?php
                                                 $sql = "SELECT id ,name FROM product";
                                                 $result = $conn->query($sql);
@@ -210,17 +224,17 @@ function adduser(){
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input onchange="amount(${i})" type="text" id="totalitem${i}" name="totalitem${i}" class="form-control ps-0 form-control-line" placeholder="add quantity">
+                                            <input required onchange="amount(${i})" type="text" id="totalitem${i}" name="totalitem${i}" class="form-control ps-0 form-control-line" placeholder="add quantity">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="text" id="rate${i}" disabled name="rate${i}" class="form-control ps-0 form-control-line" placeholder="add price">
+                                            <input required type="text" id="rate${i}" readonly="readonly" name="rate${i}" class="form-control ps-0 form-control-line" placeholder="add price">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="text" id="amount${i}" disabled name="amount${i}" class="form-control ps-0 form-control-line" placeholder="Amount">
+                                            <input required type="text" id="amount${i}" readonly="readonly" name="amount${i}" class="form-control ps-0 form-control-line" placeholder="Amount">
                                         </div>
                                     </td>
                                     <td style="color:red;padding:10px;font-weight:800;text-align:center" onclick="delete_node(${i})">
@@ -235,6 +249,7 @@ function adduser(){
                                     el.id = 'i'+(i+1);
                                     var div = document.getElementById('i'+i);
                                     insertAfter(div, el);
+                                    document.getElementById('overitems').value=i+1;
                                     window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
                                 }
 
@@ -282,6 +297,8 @@ function adduser(){
                                         }
                                     }
                                     $('#totalamount').val(get);
+                                    $('#paidamount').prop("max",get);
+                                    $('#paidamount').val(get);
                                 };
                                 </script>
 
@@ -292,20 +309,38 @@ function adduser(){
                                 <td></td>
                                 <td>Subtotal</td>
                                 <td><div class="form-group">
-                                    <input type="text" id="totalamount" class="form-control ps-0 form-control-line" disabled>
+                                    <input required type="text" readonly="readonly" name="totalamount" id="totalamount" class="form-control ps-0 form-control-line">
                                 </div></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                    <div class="row">
+                        <div class="row">
                             <div class="col-md-12">
-                            <span onclick="sno++;i++;addlist(i)" class="btn btn-success d-md-inline-block btn-md text-white" style="margin-left:80%"><i class="fa fa-plus"></i> add more</span>
+                                <span onclick="sno++;i++;addlist(i)" class="btn btn-success d-md-inline-block btn-md text-white" style="margin-left:80%"><i class="fa fa-plus"></i> add more</span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <label for="">Payment Method</label>
+                                    <select required id="paymentmethod" name="paymentmethod" class="form-select shadow-none ps-0 border-0 form-control-line">
+                                        <option value="" disabled selected hidden>Choose Payment Method</option>
+                                        <option>Cash</option>
+                                        <option>Online (Gpay)</option>
+                                        <option>Account</option>
+                                    </select>
                                 </div>
                             </div>
-                        <a href="payment.php" class="btn btn-danger d-none d-md-inline-block btn-md text-white">Cancel</a>
-                        <a href="#" class="btn btn-success d-none d-md-inline-block btn-md text-white">Save</a>
-                    </form>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Paid Amount</label>
+                                    <input  required type="number" placeholder="Paid Amount" name="paidamount" id="paidamount" class="form-control ps-0 form-control-line">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="invoice.php" class="btn btn-danger d-none d-md-inline-block btn-md text-white">Cancel</a>
+                        <button class="btn btn-success d-none d-md-inline-block btn-md text-white">Save</button>
+                </form>
                     
                 </div>
             </div>

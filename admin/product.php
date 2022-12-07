@@ -73,7 +73,7 @@
                                 <div class="table-responsive">
                                     <?php
 
-                                    $results_per_page = 5;   
+                                    $results_per_page = 10;   
                                     $query = "select *from product";  
                                     $result = mysqli_query($conn, $query);  
                                     $number_of_result = mysqli_num_rows($result);  
@@ -109,7 +109,7 @@
                                             <tr>
                                                 <td><?php echo($row['code'])?></td>
                                                 <td><?php echo($row['name'])?></td>
-                                                <td><?php echo($row['rate'])?></td>
+                                                <td>₹ <?php echo($row['rate'])?></td>
                                                 <td><?php echo($row['stock'])?></td>
                                                 <td>
                                                 <button data-bs-toggle="modal" data-bs-target="#myModal<?php echo($row["id"])?>" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-pencil"></i> edit</button>
