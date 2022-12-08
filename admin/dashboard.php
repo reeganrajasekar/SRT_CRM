@@ -168,7 +168,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="/admin/edit/invoice.php" method="POST">
+                                                        <form action="/admin/edit/unpaid.php" method="POST">
                                                             <input type="hidden" name="id" value="<?php echo($row["id"])?>">
                                                             <div class="form-floating mb-3">
                                                                 <input type="text" class="form-control"  value="<?php echo($username)?>" disabled>
