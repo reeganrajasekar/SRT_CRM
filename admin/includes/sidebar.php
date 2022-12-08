@@ -3,7 +3,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="sidebar-item"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?php if($_SERVER['PHP_SELF'] == '/admin/dashboard.php'){ echo 'active'; } ?>" href="dashboard.php" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?php if($_SERVER['PHP_SELF'] == '/admin/dashboard.php'){ echo 'active'; } ?>" href="dashboard.php?page=1" aria-expanded="false">
                                 <i class="mdi me-2 mdi-gauge"></i><span class="hide-menu">Dashboard</span>
                             </a>
                         </li>

@@ -173,7 +173,7 @@
                                                                 <label for="code">Total Amount</label>
                                                             </div>
                                                             <div class="form-floating mb-3">
-                                                                <input type="number" class="form-control" value="<?php echo($row["paid"])?>" required id="paid"  name="paid">
+                                                                <input type="number" class="form-control" max=<?php echo($row["total"])?> value="<?php echo($row["paid"])?>" required id="paid"  name="paid">
                                                                 <label for="code">Paid</label>
                                                             </div>
 
@@ -194,7 +194,7 @@
                                         
                                 <?php
                                 } else {
-                                    echo "<p style='text-align:center'>No Clients Found</p>";
+                                    echo "<p style='text-align:center'>No Invoices Found</p>";
                                 }
                                 $conn->close();
                                 ?>

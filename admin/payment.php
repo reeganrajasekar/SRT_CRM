@@ -53,6 +53,49 @@
                             <div class="card-body">
                                 <h6><i class="fa fa-money fa-3x text-success">₹
                                     <?php
+                                        $sql = "SELECT total FROM bill where payment='Cash'";
+                                        $result = $conn->query($sql);
+                                        $total=0;
+                                        if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                $total=$total+$row["total"];
+                                            }
+                                        }
+                                        echo($total);
+                                    ?>
+                                </i></h6>
+                                <h6 class="card-subtitle">Total Amount by Cash</h6>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6><i class="fa fa-money fa-3x text-warning">₹
+                                    <?php
+                                        $sql = "SELECT total FROM bill where payment='Online (Gpay)'";
+                                        $result = $conn->query($sql);
+                                        $total=0;
+                                        if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                $total=$total+($row["total"]);
+                                            }
+                                        }
+                                        echo($total);
+                                    ?>
+                                </i></h6>
+                                <h6 class="card-subtitle">Total Amount by Online</h6>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6><i class="fa fa-money fa-3x text-info"> ₹
+                                    <?php
                                         $sql = "SELECT paid FROM bill";
                                         $result = $conn->query($sql);
                                         $total=0;
@@ -64,7 +107,28 @@
                                         echo($total);
                                     ?>
                                 </i></h6>
-                                <h6 class="card-subtitle">Total Paid</h6>
+                                <h6 class="card-subtitle">Total Amount Paid</h6>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6><i class="fa fa-money fa-3x text-success">₹
+                                    <?php
+                                        $sql = "SELECT paid FROM bill where payment='Cash'";
+                                        $result = $conn->query($sql);
+                                        $total=0;
+                                        if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                $total=$total+$row["paid"];
+                                            }
+                                        }
+                                        echo($total);
+                                    ?>
+                                </i></h6>
+                                <h6 class="card-subtitle">Total Amount paid through Cash</h6>
                                 
                             </div>
                         </div>
@@ -74,18 +138,18 @@
                             <div class="card-body">
                                 <h6><i class="fa fa-money fa-3x text-warning">₹
                                     <?php
-                                        $sql = "SELECT paid,total FROM bill";
+                                        $sql = "SELECT paid FROM bill where payment='Online (Gpay)'";
                                         $result = $conn->query($sql);
                                         $total=0;
                                         if ($result->num_rows > 0) {
                                             while($row = $result->fetch_assoc()) {
-                                                $total=$total+($row["total"]-$row["paid"]);
+                                                $total=$total+($row["paid"]);
                                             }
                                         }
                                         echo($total);
                                     ?>
                                 </i></h6>
-                                <h6 class="card-subtitle">Total Due</h6>
+                                <h6 class="card-subtitle">Total Amount paid through Online</h6>
                                 
                             </div>
                         </div>
@@ -93,7 +157,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title"><i class="mdi me-2 mdi-file-multiple"></i> Invoice List</h4>
+                                <h4 class="card-title"><i class="mdi me-2 mdi-file-multiple"></i>Payment List</h4>
                                 <div class="table-responsive">
                                 <?php
 
@@ -161,7 +225,7 @@
                                         
                                 <?php
                                 } else {
-                                    echo "<p style='text-align:center'>No Clients Found</p>";
+                                    echo "<p style='text-align:center'>No Payments Found</p>";
                                 }
                                 $conn->close();
                                 ?>

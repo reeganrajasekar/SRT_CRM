@@ -208,7 +208,7 @@ function form_valid(){
                                             <select required onchange="getproduct(${i})" id="itemid${i}" name="itemid${i}" class="form-select shadow-none ps-0 border-0 form-control-line">
                                                 <option value="" disabled selected hidden>Choose Product</option>
                                                 <?php
-                                                $sql = "SELECT id ,name FROM product";
+                                                $sql = "SELECT id ,name FROM product where stock>0";
                                                 $result = $conn->query($sql);
             
                                                 if ($result->num_rows > 0) {
@@ -224,17 +224,17 @@ function form_valid(){
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input required onchange="amount(${i})" type="text" id="totalitem${i}" name="totalitem${i}" class="form-control ps-0 form-control-line" placeholder="add quantity">
+                                            <input required onchange="amount(${i})" type="number" id="totalitem${i}" name="totalitem${i}" max=0 class="form-control ps-0 form-control-line" placeholder="add quantity">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input required type="text" id="rate${i}" readonly="readonly" name="rate${i}" class="form-control ps-0 form-control-line" placeholder="add price">
+                                            <input required type="number" id="rate${i}" readonly="readonly" name="rate${i}" class="form-control ps-0 form-control-line" placeholder="add price">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input required type="text" id="amount${i}" readonly="readonly" name="amount${i}" class="form-control ps-0 form-control-line" placeholder="Amount">
+                                            <input required type="number" id="amount${i}" readonly="readonly" name="amount${i}" class="form-control ps-0 form-control-line" placeholder="Amount">
                                         </div>
                                     </td>
                                     <td style="color:red;padding:10px;font-weight:800;text-align:center" onclick="delete_node(${i})">
@@ -280,6 +280,7 @@ function form_valid(){
                                                 alert("Something went Wrong")
                                             }else{
                                                 $('#rate'+item).val(data.rate);
+                                                $('#totalitem'+item).prop("max",parseInt(data.stock));
                                             }
                                         }
                                         })
@@ -298,7 +299,7 @@ function form_valid(){
                                     }
                                     $('#totalamount').val(get);
                                     $('#paidamount').prop("max",get);
-                                    $('#paidamount').val(get);
+                                    
                                 };
                                 </script>
 

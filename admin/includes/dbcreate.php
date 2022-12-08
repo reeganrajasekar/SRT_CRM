@@ -6,9 +6,9 @@ $sql = "CREATE TABLE bill (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     userid INT(6) UNSIGNED,
     items JSON NOT NULL,
-    total INT(50) NOT NULL,
+    total INT(5000) NOT NULL,
     payment VARCHAR(50) NOT NULL,
-    paid INT(50) NOT NULL,
+    paid INT(5000) NOT NULL,
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (userid) REFERENCES client(id)
 )";
