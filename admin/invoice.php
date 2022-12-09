@@ -148,10 +148,10 @@
                                             <td>₹ <?php echo($row['total'])?></td>
                                             <td>₹ <?php echo($row['paid'])?></td>
                                             <td>₹ <?php echo($row['total']-$row['paid'])?></td>
-                                            <td>
-                                            <a target="blank" href="/admin/bill_print.php?id=<?php echo($row['id'])?>" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i>Print</a>
-                                            <button data-bs-toggle="modal" data-bs-target="#myModal<?php echo($row["id"])?>" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-pencil"></i> edit</button>
-                                            <a onclick="return confirm('Do you want to delete?')" href="/admin/delete/invoice.php?id=<?php echo($row['id'])?>" class="btn btn-danger d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i> delete</a>
+                                            <td style="width:100% !important;">
+                                            <a target="blank" href="/admin/bill_print.php?id=<?php echo($row['id'])?>" class="btn btn-success d-md-inline-block btn-sm text-white m-1"><i class="mdi mdi-eraser"></i>Print</a>
+                                            <button data-bs-toggle="modal" data-bs-target="#myModal<?php echo($row["id"])?>" class="btn btn-success d-md-inline-block btn-sm text-white m-1"><i class="mdi mdi-pencil"></i> edit</button>
+                                            <a onclick="return confirm('Do you want to delete?')" href="/admin/delete/invoice.php?id=<?php echo($row['id'])?>" class="btn btn-danger d-md-inline-block btn-sm text-white m-1"><i class="mdi mdi-eraser"></i> delete</a>
                                             </td>
 
                                             <div class="modal fade" id="myModal<?php echo($row["id"])?>">

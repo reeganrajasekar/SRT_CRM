@@ -47,17 +47,15 @@
                             <div class="card-body">
                                 <h3 class="card-title"><i class="fa fa-money fa-3x text-success">₹
                                     <?php
-                                        $sql = "SELECT total,paid FROM bill";
+                                        $sql = "SELECT total FROM bill";
                                         $result = $conn->query($sql);
                                         $total=0;
-                                        $pending=0;
                                         if ($result->num_rows > 0) {
                                             while($row = $result->fetch_assoc()) {
-                                                $total=$total+$row["paid"];
-                                                $pending=$row["total"]-$row["paid"];
+                                                $total=$total+$row["total"];
                                             }
                                         }
-                                        echo($pending." / ".$total);
+                                        echo($total);
                                     ?>
                                 </i></h3>
                                 <h6 class="card-subtitle">Total Collection</h6>
