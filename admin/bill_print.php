@@ -14,7 +14,7 @@ if ($result->num_rows > 0) {
     <meta charset="utf-8">
     <title>Bill-<?php echo($id);?></title>
     <link rel="stylesheet" href="/admin/css/stylebill.css" media="all" />
-
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
   </head>
   <body id="divId">
     <header class="clearfix">
@@ -22,8 +22,8 @@ if ($result->num_rows > 0) {
         <img src="/static/images/logo.png">
         <div id="company" class="clearfix">
         <div>Company Name</div>
-        <div>455 Foggy Heights,<br /> AZ 85004, US</div>
-        <div>(602) 519-0450</div>
+        <div>no , Location</div>
+        <div>(+91) 876959797</div>
         <div><a href="mailto:company@example.com">company@example.com</a></div>
       </div>
       </div>
@@ -31,9 +31,9 @@ if ($result->num_rows > 0) {
       <div id="project">
         <p><span>Bill No :</span><?php echo($id);?></p>
         <p><span>Client :</span><?php echo($row["username"])?></p>
-        <p><span>Contact No :</span><?php echo($row["usermob"])?></p>
+        <p><span>Contact No :</span> +91 <?php echo($row["usermob"])?></p>
         <p><span>Address :</span><?php echo($row["useraddress"])?></p>
-        <p><span>Date :</span><?php echo($row["reg_date"])?></p>
+        <p><span>Date :</span><script>document.write(moment("<?php echo($row["reg_date"])?>").format('LLL'))</script></p>
       </div>
     </header>
     <main>
@@ -79,8 +79,8 @@ if ($result->num_rows > 0) {
       <?php }} ?>
     </main>
 
-<!-- <script>
+<script>
 print()
-</script> -->
+</script>
   </body>
 </html>
