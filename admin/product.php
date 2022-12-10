@@ -109,11 +109,11 @@
                                             <tr>
                                                 <td><?php echo($row['code'])?></td>
                                                 <td><?php echo($row['name'])?></td>
-                                                <td>₹ <?php echo($row['rate'])?></td>
+                                                <td>₹<?php echo($row['rate'])?></td>
                                                 <td><?php echo($row['stock'])?></td>
                                                 <td>
-                                                <button data-bs-toggle="modal" data-bs-target="#myModal<?php echo($row["id"])?>" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-pencil"></i> edit</button>
-                                                <a onclick="return confirm('Do you want to delete?')" href="/admin/delete/product.php?id=<?php echo($row['id'])?>" class="btn btn-danger d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i> delete</a>
+                                                <button data-bs-toggle="modal" data-bs-target="#myModal<?php echo($row["id"])?>" class="btn btn-success d-md-inline-block btn-sm text-white mr-1 mb-1"><i class="mdi mdi-pencil"></i> edit</button>
+                                                <a onclick="return confirm('Do you want to delete?')" href="/admin/delete/product.php?id=<?php echo($row['id'])?>" class="btn btn-danger d-md-inline-block btn-sm text-white  mr-1 mb-1"><i class="mdi mdi-eraser"></i> delete</a>
                                                 </td>
 
                                                 <div class="modal fade" id="myModal<?php echo($row["id"])?>">

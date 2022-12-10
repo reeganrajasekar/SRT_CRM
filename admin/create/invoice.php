@@ -2,6 +2,9 @@
 include '../includes/db.php';
 
 $userid = $_POST["userid"];
+$username = $_POST["username"];
+$usermob = $_POST["usermob"];
+$useraddress = $_POST["useraddress"];
 $total = $_POST["totalamount"];
 $payment = $_POST["paymentmethod"];
 $paid = $_POST["paidamount"];
@@ -22,10 +25,9 @@ for($i=0;$i<$totalitems;$i++){
         $conn->query($sql);
     }
 }
-echo json_encode($data);
 $final = json_encode($data);
-$sql = "INSERT INTO bill (userid,total,payment,paid,items)
-VALUES ('$userid',$total,'$payment','$paid','$final')";
+$sql = "INSERT INTO bill (userid,username,usermob,useraddress,total,payment,paid,items)
+VALUES ('$userid','$username','$usermob','$useraddress',$total,'$payment','$paid','$final')";
 
 if ($conn->query($sql) === TRUE) {
     header("Location: /admin/invoice.php?page=1&msg=Bill added Successfully !");

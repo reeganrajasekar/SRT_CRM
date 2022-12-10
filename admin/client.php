@@ -68,7 +68,7 @@
                                 <?php
 
                                     $results_per_page = 10;   
-                                    $query = "select *from client";  
+                                    $query = "SELECT *FROM client WHERE NOT(id=1)";  
                                     $result = mysqli_query($conn, $query);  
                                     $number_of_result = mysqli_num_rows($result);  
                                     $number_of_page = ceil ($number_of_result / $results_per_page);  
@@ -81,7 +81,7 @@
 
                                     $page_first_result = ($page-1) * $results_per_page; 
 
-                                    $sql = "SELECT * FROM client order by name ASC LIMIT " . $page_first_result . ',' . $results_per_page;
+                                    $sql = "SELECT * FROM client WHERE NOT(id=1) order by name ASC  LIMIT " . $page_first_result . ',' . $results_per_page;
                                     $result = $conn->query($sql);
 
                                     if ($result->num_rows > 0) {
@@ -104,8 +104,8 @@
                                                 <td><?php echo($row['mob'])?></td>
                                                 <td><?php echo($row['address'])?></td>
                                                 <td>
-                                                <button data-bs-toggle="modal" data-bs-target="#myModal<?php echo($row["id"])?>" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-pencil"></i> edit</button>
-                                                <a onclick="return confirm('Do you want to delete?')" href="/admin/delete/client.php?id=<?php echo($row['id'])?>" class="btn btn-danger d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i> delete</a>
+                                                <button data-bs-toggle="modal" data-bs-target="#myModal<?php echo($row["id"])?>" class="btn btn-success  mr-1 mb-1 d-md-inline-block btn-sm text-white"><i class="mdi mdi-pencil"></i> edit</button>
+                                                <a onclick="return confirm('Do you want to delete?')" href="/admin/delete/client.php?id=<?php echo($row['id'])?>" class="btn btn-danger  mr-1 mb-1 d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i> delete</a>
                                                 </td>
 
                                                 <div class="modal fade" id="myModal<?php echo($row["id"])?>">

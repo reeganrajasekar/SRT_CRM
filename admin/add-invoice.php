@@ -72,27 +72,27 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-9">
                                         <div class="form-group">
                                             <label >Client Mobile No</label>
-                                            <input type="text" id="mob" class="form-control ps-0 form-control-line" placeholder="Mobile no">
+                                            <input onchange="changemob()" type="text" id="mob" class="form-control ps-0 form-control-line" placeholder="Mobile no">
                                         </div>
                                     </div>
-                                    <div class="col-4">
-                                        <button id="search_btn" class="btn btn-primary mt-4 w-100" onclick="getuser()" style="background-color:#1e88e5">Search</button>
+                                    <div class="col-3">
+                                        <button id="search_btn" class="btn btn-primary mt-4 w-100" onclick="getuser()" style="background-color:#1e88e5;"><i class="mdi mdi-magnify"></i></button>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                     <div class="form-group">
                                         <label >Client Name</label>
-                                        <input type="text" id="name" class="form-control ps-0 form-control-line" placeholder="Client Name">
+                                        <input onchange="changename()" type="text" id="name" class="form-control ps-0 form-control-line" placeholder="Client Name">
                                     </div>
                             </div>
                             <div class="col-md-12">
                                     <div class="form-group">
                                         <label >Client Address</label>
-                                        <input type="text" id="address" class="form-control ps-0 form-control-line" placeholder="Client Address">
+                                        <input onchange="changeaddress()" type="text" id="address" class="form-control ps-0 form-control-line" placeholder="Client Address">
                                     </div>
                             </div>
                         </div>
@@ -103,6 +103,20 @@
 
 
 <script>
+function changemob(){
+    var mob= $('#mob').val();
+    $("#mainusermob").val(mob)
+}
+
+function changename(){
+    var mob= $('#name').val();
+    $("#mainusername").val(mob)
+}
+
+function changeaddress(){
+    var mob= $('#address').val();
+    $("#mainuseraddress").val(mob)
+}
 function getuser(){
   var id= $('#mob').val();
   $('#usermob').val(id);
@@ -122,6 +136,9 @@ function getuser(){
         $("#name").val(data.name)
         $("#address").val(data.address)
         $("#mainuser").val(data.id)
+        $("#mainusermob").val(data.mob)
+        $("#mainuseraddress").val(data.address)
+        $("#mainusername").val(data.name)
         $("#mob").prop('disabled', true)
         $("#name").prop('disabled', true)
         $("#address").prop('disabled', true)
@@ -157,7 +174,7 @@ function adduser(){
 
 
 function form_valid(){
-    if($("#mainuser").val()==""){
+    if($("#mainuser").val()=="1" && $("#mainusermob").val()==""){
         document.getElementById("mob").focus();
         return false
     }else{
@@ -178,7 +195,10 @@ function form_valid(){
                 <h4 class="card-title"><i class="mdi me-2 mdi-file-multiple"></i> Invoice Information</h4>
                     <div class="col-lg-12">
                     <form onsubmit="return form_valid()" class="form-horizontal form-material mx-2" action="/admin/create/invoice.php" method="POST">
-                        <input type="hidden" value="" id="mainuser" name="userid">
+                        <input type="hidden" value="1" id="mainuser" name="userid">
+                        <input type="hidden" value="" id="mainusername" name="username">
+                        <input type="hidden" value="" id="mainusermob" name="usermob">
+                        <input type="hidden" value="" id="mainuseraddress" name="useraddress">
                         <input type="hidden" value="" id="overitems" name="overitems">
                             <div class="table-responsive">
                     <table class="table user-table">
@@ -318,7 +338,7 @@ function form_valid(){
                 </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <span onclick="sno++;i++;addlist(i)" class="btn btn-success d-md-inline-block btn-md text-white" style="margin-left:80%"><i class="fa fa-plus"></i> add more</span>
+                                <span onclick="sno++;i++;addlist(i)" class="btn btn-success d-md-inline-block btn-md text-white" style="margin-left:80%"><i class="fa fa-plus"></i> add</span>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -338,8 +358,8 @@ function form_valid(){
                                 </div>
                             </div>
                         </div>
-                        <a href="invoice.php" class="btn btn-danger d-none d-md-inline-block btn-md text-white">Cancel</a>
-                        <button class="btn btn-success d-none d-md-inline-block btn-md text-white">Save</button>
+                        <a href="invoice.php" class="btn btn-danger d-md-inline-block btn-md text-white">Cancel</a>
+                        <button class="btn btn-success d-md-inline-block btn-md text-white">Save</button>
                 </form>
                     
                 </div>

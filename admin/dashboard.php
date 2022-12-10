@@ -141,21 +141,15 @@
                                             <td><?php if($row['total']-$row['paid']==0){echo("<span class='badge bg-success'>paid</span>");}else{echo("<span class='badge bg-warning'>partially paid</span>");}?></td>
                                             <td>
                                                 <?php
-                                                    $user = $row['userid'];
-                                                    $sql="SELECT name from client where id='$user'";
-                                                    $results = $conn->query($sql);
-                                                    while($row1 = $results->fetch_assoc()){
-                                                        $username= $row1['name'];
-                                                        echo($row1['name']);
-                                                    }
+                                                    echo($row['username']);
                                                 ?>
                                             </td>
-                                            <td>₹ <?php echo($row['total'])?></td>
-                                            <td>₹ <?php echo($row['paid'])?></td>
-                                            <td>₹ <?php echo($row['total']-$row['paid'])?></td>
+                                            <td>₹<?php echo($row['total'])?></td>
+                                            <td>₹<?php echo($row['paid'])?></td>
+                                            <td>₹<?php echo($row['total']-$row['paid'])?></td>
                                             <td>
-                                            <a target="blank" href="/admin/bill_print.php?id=<?php echo($row['id'])?>" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i>Print</a>
-                                            <button data-bs-toggle="modal" data-bs-target="#myModal<?php echo($row["id"])?>" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-pencil"></i> edit</button>
+                                            <a target="blank" href="/admin/bill_print.php?id=<?php echo($row['id'])?>" class="btn btn-success d-md-inline-block btn-sm text-white mr-1 mb-1"><i class="mdi mdi-eraser"></i>Print</a>
+                                            <button data-bs-toggle="modal" data-bs-target="#myModal<?php echo($row["id"])?>" class="btn btn-success d-md-inline-block btn-sm text-white mr-1 mb-1"><i class="mdi mdi-pencil"></i> edit</button>
                                             </td>
 
                                             <div class="modal fade" id="myModal<?php echo($row["id"])?>">

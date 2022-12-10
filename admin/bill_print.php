@@ -1,41 +1,43 @@
-<?php include 'includes/db.php'?>
+<?php include 'includes/db.php';
+
+$id= sprintf("%06d", $_GET["id"]);
+
+$sql = "SELECT * FROM bill where id='$id'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+  while($row = $result->fetch_assoc()) {
+?>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bill</title>
+    <title>Bill-<?php echo($id);?></title>
     <link rel="stylesheet" href="/admin/css/stylebill.css" media="all" />
+
   </head>
-  <body>
+  <body id="divId">
     <header class="clearfix">
       <div id="logo">
         <img src="/static/images/logo.png">
-      </div>
-      <h1>INVOICE 3-2-1</h1>
-      <div id="company" class="clearfix">
+        <div id="company" class="clearfix">
         <div>Company Name</div>
         <div>455 Foggy Heights,<br /> AZ 85004, US</div>
         <div>(602) 519-0450</div>
         <div><a href="mailto:company@example.com">company@example.com</a></div>
       </div>
+      </div>
+      <h1>INVOICE</h1>
       <div id="project">
-        <div><span>PROJECT</span> Website development</div>
-        <div><span>CLIENT</span> John Doe</div>
-        <div><span>ADDRESS</span> 796 Silver Harbour, TX 79273, US</div>
-        <div><span>EMAIL</span> <a href="mailto:john@example.com">john@example.com</a></div>
-        <div><span>DATE</span> August 17, 2015</div>
-        <div><span>DUE DATE</span> September 17, 2015</div>
+        <p><span>Bill No :</span><?php echo($id);?></p>
+        <p><span>Client :</span><?php echo($row["username"])?></p>
+        <p><span>Contact No :</span><?php echo($row["usermob"])?></p>
+        <p><span>Address :</span><?php echo($row["useraddress"])?></p>
+        <p><span>Date :</span><?php echo($row["reg_date"])?></p>
       </div>
     </header>
     <main>
-        <?php
-        $id = $_GET["id"];
-        $sql = "SELECT * FROM bill where id='$id'";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-
-        ?>
+        
       <table>
         <thead>
           <tr>
@@ -48,25 +50,37 @@
         </thead>
         <tbody>
             <?php
-            while($row = $result->fetch_assoc()) {
                 $data = json_decode($row["items"]);
+                $i=1;
                 foreach($data as $item){
+
             ?>
             <tr>
-                <td class="service"><?php echo($item[0])?></td>
-                <td class="desc"><?php echo($item[0])?></td>
+                <td class="service"><?php echo($i)?></td>
+                <td class="desc">
+                <?php 
+                $sql = "SELECT name FROM product where id=$item[0]";
+                $result1 = $conn->query($sql);
+                while($row1 = $result1->fetch_assoc()) {
+                  echo($row1["name"]);
+                }
+                ?></td>
                 <td class="unit"><?php echo($item[2])?></td>
                 <td class="qty"><?php echo($item[1])?></td>
                 <td class="total"><?php echo($item[3])?></td>
             </tr>
-          <?php } ?>
+          <?php $i++;} ?>
           <tr>
-            <td colspan="4" class="grand total">GRAND TOTAL</td>
+            <td colspan="4" class="grand total" style="text-align:right !important">GRAND TOTAL</td>
             <td class="grand total"><?php echo($row["total"]) ?></td>
           </tr>
         </tbody>
       </table>
       <?php }} ?>
     </main>
+
+<!-- <script>
+print()
+</script> -->
   </body>
 </html>

@@ -199,21 +199,15 @@
                                             <td><?php echo($row['id'])?></td>
                                             <td>
                                                 <?php
-                                                    $user = $row['userid'];
-                                                    $sql="SELECT name from client where id='$user'";
-                                                    $results = $conn->query($sql);
-                                                    while($row1 = $results->fetch_assoc()){
-                                                        $username= $row1['name'];
-                                                        echo($row1['name']);
-                                                    }
+                                                    echo($row['username']);
                                                 ?>
                                             </td>
                                             <td><?php echo($row['reg_date'])?></td>
                                             <td><?php echo($row['payment'])?></td>
                                             <td>₹ <?php echo($row['total'])?></td>
                                             <td>
-                                            <a target="blank" href="/admin/bill_print.php?id=<?php echo($row['id'])?>" class="btn btn-success d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i>Print</a>
-                                            <a onclick="return confirm('Do you want to delete?')" href="/admin/delete/invoice.php?id=<?php echo($row['id'])?>" class="btn btn-danger d-none d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i> delete</a>
+                                            <a target="blank" href="/admin/bill_print.php?id=<?php echo($row['id'])?>" class="btn btn-success  mr-1 mb-1 d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i>Print</a>
+                                            <a onclick="return confirm('Do you want to delete?')" href="/admin/delete/invoice.php?id=<?php echo($row['id'])?>" class="btn btn-danger  mr-1 mb-1 d-md-inline-block btn-sm text-white"><i class="mdi mdi-eraser"></i> delete</a>
                                             </td>
 
                                         </tr>

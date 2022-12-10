@@ -1,8 +1,4 @@
-.clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+
   
   a {
     color: #5D6975;
@@ -12,7 +8,7 @@
   body {
     position: relative;
     width: 21cm;  
-    height: 29.7cm; 
+    height: auto; 
     margin: 0 auto; 
     color: #001028;
     background: #FFFFFF; 
@@ -27,7 +23,7 @@
   }
   
   #logo {
-    text-align: center;
+    text-align: left;
     margin-bottom: 10px;
   }
   
@@ -47,16 +43,23 @@
   }
   
   #project {
-    float: left;
+    overflow:auto;
   }
   
-  #project span {
-    color: #5D6975;
+  #project p {
+    color: #001028;
+    font-size: 16px !important;
+    font-weight: 800;
+  }
+
+  #project p span{
+    color: #888;
+    font-size: 1.0em !important;
+    font-weight: 500;
     text-align: right;
-    width: 52px;
-    margin-right: 10px;
+    padding-right:10px;
     display: inline-block;
-    font-size: 0.8em;
+    width:100px !important;
   }
   
   #company {
@@ -83,6 +86,7 @@
   table th,
   table td {
     text-align: center;
+    font-size: 18px;
   }
   
   table th {
@@ -90,7 +94,7 @@
     color: #5D6975;
     border-bottom: 1px solid #C1CED9;
     white-space: nowrap;        
-    font-weight: normal;
+    font-weight: 800;
   }
   
   
@@ -110,7 +114,9 @@
   }
   
   table td.grand {
-    border-top: 1px solid #5D6975;;
+    border-top: 1px solid #5D6975;
+    font-size: 20px;
+    font-weight: bolder;
   }
   
   #notices .notice {
