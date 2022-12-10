@@ -20,7 +20,7 @@
             <div class="page-breadcrumb">
                 <div class="row align-items-center">
                     <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="page-title mb-0 p-0"><i class="mdi me-2 mdi-chart-bar"></i>Generate Reports</h3>
+                        <h3 class="page-title mb-0 p-0"><i class="mdi me-2 mdi-chart-bar"></i>Reports</h3>
                         <div class="d-flex align-items-center">
                         </div>
                     </div>
@@ -29,9 +29,16 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card container">
-
-                            hii
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title"><i class="mdi me-2 mdi-chart-areaspline"></i>Generate Report</h4>
+                                <select class="form-select" aria-label="Default select example">
+  <option selected>Open this select menu</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
+                            </div>
                         </div>
                     </div>
                 </div>
