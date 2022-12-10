@@ -1,7 +1,7 @@
         <header class="topbar" data-navbarbg="skin6">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <div class="navbar-header" data-logobg="skin6">
-                    <a class="navbar-brand ms-4" href="index.html">
+                    <a class="navbar-brand ms-4" href="#">
                         <b class="logo-icon">
                             <h2 style="color:#fff;">SRT <span style="font-size:18px">Admin</span></h2>
                         </b>
