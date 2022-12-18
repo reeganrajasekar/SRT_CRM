@@ -32,17 +32,21 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title"><i class="mdi me-2 mdi-chart-areaspline"></i>Generate Report</h4>
-                                <form action="" class="row" method="post">
-                                    <div class="col-6">
-
-                                        <select class="form-select " aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+            
+                                    <div class="col-md-6 ">
+                                        <select onchange="changed()" class="form-select" id="type" aria-label="Default select example">
+                                            <option selected>Select Category</option>
+                                            <option value="0">General Report</option>
+                                            <option value="1">Product</option>
+                                            <option value="2">Payment</option>
+                                            <option value="3">Clients</option>
                                         </select>
                                     </div>
-                                </form>
+
+                                    <div id="btn" style="display:flex;justify-content:flex-end">
+                                        
+                                    </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -50,6 +54,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function changed(){
+            let type = $("#type").val()
+            if(type==0){
+                $("#btn").html(`<br><a class="btn btn-primary" href="/admin/reports/general.php">Download</a>`)
+            }else{
+                alert(9)
+            }
+        }
+    </script>
 
     <?php include 'includes/footer.php'?>
    
