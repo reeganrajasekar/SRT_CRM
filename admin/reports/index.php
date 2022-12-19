@@ -159,7 +159,7 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 <script>
-// print()
+print()
 </script>
 </body>
 </html>
