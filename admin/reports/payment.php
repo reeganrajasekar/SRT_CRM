@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Report</title>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+
     <!-- CSS only -->
     <style>
     table.print-friendly tr td, table.print-friendly tr th {
@@ -76,7 +78,7 @@ if ($result->num_rows > 0) {
             <td><?php echo($row['username']);?></td>
             <td><?php echo($row['usermob']);?></td>
             <td><?php echo($row['useraddress']);?></td>
-            <td><?php echo($row['reg_date'])?></td>
+            <td><script>document.write(moment("<?php echo($row["reg_date"])?>").format('lll'))</script></td>
             <td><?php echo($row['payment'])?></td>
             <td>₹ <?php echo($row['total'])?></td>
             <td>₹ <?php echo($row['paid'])?></td>
