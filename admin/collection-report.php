@@ -43,7 +43,7 @@
                                         </select>
                                     </div>
 
-                                    <div id="btn" style="display:flex;justify-content:flex-end">
+                                    <div id="btn">
                                         
                                     </div>
                                 
@@ -59,7 +59,12 @@
         function changed(){
             let type = $("#type").val()
             if(type==0){
-                $("#btn").html(`<br><a class="btn btn-primary" href="/admin/reports/general.php">Download</a>`)
+                $("#btn").html(`
+                <div style="display:flex;justify-content:space-around">
+                    <a class="btn btn-primary" href="/admin/reports/general.php">Download</a>
+                    <a class="btn btn-primary" href="/admin/reports/general.php">Download</a>
+                </div>
+                `)
             }else{
                 alert(9)
             }
