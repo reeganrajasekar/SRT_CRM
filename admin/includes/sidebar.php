@@ -28,7 +28,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?php if($_SERVER['PHP_SELF'] == '/admin/collection-report.php'){ echo 'active'; } ?>" href="collection-report.php" aria-expanded="false">
+                            <a target="blind" class="sidebar-link waves-effect waves-dark sidebar-link <?php if($_SERVER['PHP_SELF'] == '/admin/collection-report.php'){ echo 'active'; } ?>" href="collection-report.php" aria-expanded="false">
                                 <i class="mdi me-2 mdi-chart-bar"></i><span class="hide-menu">Reports</span>
                             </a>
                         </li>
