@@ -1,9 +1,9 @@
-    <script src="js/jquery/dist/jquery.min.js"></script>
-    <script src="js/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/app-style-switcher.js"></script>
-    <script src="js/waves.js"></script>
-    <script src="js/sidebarmenu.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="/admin/js/jquery/dist/jquery.min.js"></script>
+    <script src="/admin/js/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/app-style-switcher.js"></script>
+    <script src="/admin/js/waves.js"></script>
+    <script src="/admin/js/sidebarmenu.js"></script>
+    <script src="/admin/js/custom.js"></script>
 
 
     <script>

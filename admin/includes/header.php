@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SRT</title>
     <link rel="icon" type="image/png" sizes="16x16" href="../static/images/logo.png">
-    <link href="css/style.min.css" rel="stylesheet">
+    <link href="/admin/css/style.min.css" rel="stylesheet">
     <style>
         *{
             user-select: none;

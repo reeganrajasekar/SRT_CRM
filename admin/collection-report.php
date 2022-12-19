@@ -60,13 +60,30 @@
             let type = $("#type").val()
             if(type==0){
                 $("#btn").html(`
-                <div style="display:flex;justify-content:space-around">
-                    <a class="btn btn-primary" href="/admin/reports/general.php">Download</a>
-                    <a class="btn btn-primary" href="/admin/reports/general.php">Download</a>
-                </div>
+                <form class="container row" action="/admin/reports/index.php" method="GET" style="margin:20px">
+                    <div class="mb-3 col-md-6">
+                        <label for="floatingInput" class="form-label">Start Date :</label>
+                        <input type="date" class="form-control" id="floatingInput" required name="start">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="floatingInput" class="form-label">End Date :</label>
+                        <input type="date" class="form-control" id="floatingInput" required name="end">
+                    </div>
+                    <br>
+                    <center>
+                        <button class="mt-4 btn btn-primary w-30">Download</button>
+                    </center>
+                </form>
                 `)
-            }else{
-                alert(9)
+            }else if(type==1){
+                $("#btn").html(`
+                <form class="container row" action="/admin/reports/product.php" method="GET" style="margin:20px">
+                    <br>
+                    <center>
+                        <button class="mt-4 btn btn-primary w-30">Download</button>
+                    </center>
+                </form>
+                `)
             }
         }
     </script>
