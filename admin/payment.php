@@ -74,7 +74,7 @@
                             <div class="card-body">
                                 <h6><i class="fa fa-money fa-3x text-warning">₹
                                     <?php
-                                        $sql = "SELECT total FROM bill where payment='Online (Gpay)'";
+                                        $sql = "SELECT total FROM bill where payment='Online (Gpay,etc.,)'";
                                         $result = $conn->query($sql);
                                         $total=0;
                                         if ($result->num_rows > 0) {

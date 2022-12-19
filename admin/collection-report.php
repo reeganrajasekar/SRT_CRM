@@ -60,7 +60,7 @@
             let type = $("#type").val()
             if(type==0){
                 $("#btn").html(`
-                <form class="container row" action="/admin/reports/index.php" method="GET" style="margin:20px">
+                <form class="container row mt-3" action="/admin/reports/index.php" method="GET">
                     <div class="mb-3 col-md-6">
                         <label for="floatingInput" class="form-label">Start Date :</label>
                         <input type="date" class="form-control" id="floatingInput" required name="start">
@@ -77,7 +77,7 @@
                 `)
             }else if(type==1){
                 $("#btn").html(`
-                <form class="container row" action="/admin/reports/product.php" method="GET" style="margin:20px">
+                <form class="container row mt-3" action="/admin/reports/product.php" method="GET">
                     <br>
                     <center>
                         <button class="mt-4 btn btn-primary w-30">Download</button>
@@ -86,7 +86,7 @@
                 `)
             }else if(type==2){
                 $("#btn").html(`
-                <form class="container row" action="/admin/reports/payment.php" method="GET" style="margin:20px">
+                <form class="container row mt-3" action="/admin/reports/payment.php" method="GET">
                     <div class="mb-3 col-md-6">
                         <label for="floatingInput" class="form-label">Start Date :</label>
                         <input type="date" class="form-control" id="floatingInput" required name="start">
@@ -94,6 +94,37 @@
                     <div class="mb-3 col-md-6">
                         <label for="floatingInput" class="form-label">End Date :</label>
                         <input type="date" class="form-control" id="floatingInput" required name="end">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="floatingInput" class="form-label">Payment Method :</label>
+                        <select name="method" required class="form-select" id="type" aria-label="Default select example">
+                            <option selected disabled value="">Select Payment Method</option>
+                            <option value="all">All</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Online (Gpay,etc.,)">Online (Gpay,etc.,)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="floatingInput"  class="form-label">Payment Details :</label>
+                        <select name="payment" required class="form-select" id="type" aria-label="Default select example">
+                            <option selected disabled value="">Select Payment Details</option>
+                            <option value="all">All</option>
+                            <option value="unpaid">Unpaid</option>
+                            <option value="paid">Paid</option>
+                        </select>
+                    </div>
+                    <br>
+                    <center>
+                        <button class="mt-4 btn btn-primary w-30">Download</button>
+                    </center>
+                </form>
+                `)
+            }else if(type==3){
+                $("#btn").html(`
+                <form class="container row mt-3" action="/admin/reports/client.php" method="GET">
+                    <div class="mb-3 col-12">
+                        <label for="floatingInput" class="form-label">Mobile No :</label>
+                        <input type="number" placeholder="Enter Client Mobile Number" class="form-control" id="floatingInput" required name="mob">
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="floatingInput" class="form-label">Payment Method :</label>
