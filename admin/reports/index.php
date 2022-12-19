@@ -29,7 +29,7 @@
 $start = $_GET["start"];
 $end = $_GET["end"];
 
-$sql = "SELECT * FROM bill where DATE(reg_date) BETWEEN '$start' AND '$end' order by id DESC";
+$sql = "SELECT * FROM product where DATE(reg_date) BETWEEN '$start' AND '$end' order by id DESC";
 
 $result = $conn->query($sql);
 $i=1;
@@ -41,23 +41,71 @@ if ($result->num_rows > 0) {
         <tbody>
             <tr>
                 <th>Total Invoices :</th>
-                <td> 10 </td>
+                <td>
+                    <?php
+                        $sql4 = "SELECT id FROM bill where DATE(reg_date) BETWEEN '$start' AND '$end' order by id DESC";
+                        $result4 = $conn->query($sql4);
+                        echo($result4->num_rows);
+                    ?>
+                </td>
             </tr>
             <tr>
                 <th>Total Collection :</th>
-                <td> 10 </td>
+                <td>
+                    <?php
+                        $sql4 = "SELECT total FROM bill  where DATE(reg_date) BETWEEN '$start' AND '$end' order by id DESC";
+                        $result4 = $conn->query($sql4);
+                        $total=0;
+                        if ($result4->num_rows > 0) {
+                            while($row4 = $result4->fetch_assoc()) {
+                                $total=$total+$row4["total"];
+                            }
+                        }
+                        echo($total);
+                    ?>
+                </td>
             </tr>
             <tr>
                 <th>Total Paid Amount :</th>
-                <td> 10 </td>
+                <td>
+                    <?php
+                        $sql4 = "SELECT paid FROM bill  where DATE(reg_date) BETWEEN '$start' AND '$end' order by id DESC";
+                        $result4 = $conn->query($sql4);
+                        $total=0;
+                        if ($result4->num_rows > 0) {
+                            while($row4 = $result4->fetch_assoc()) {
+                                $total=$total+$row4["paid"];
+                            }
+                        }
+                        echo($total);
+                    ?>
+                </td>
             </tr>
             <tr>
                 <th>Total Due Amount :</th>
-                <td> 10 </td>
+                <td>
+                    <?php
+                        $sql4 = "SELECT paid,total FROM bill where DATE(reg_date) BETWEEN '$start' AND '$end' order by id DESC";
+                        $result4 = $conn->query($sql4);
+                        $total=0;
+                        if ($result4->num_rows > 0) {
+                            while($row4 = $result4->fetch_assoc()) {
+                                $total=$total+($row4["total"]-$row4["paid"]);
+                            }
+                        }
+                        echo($total);
+                    ?>
+                </td>
             </tr>
             <tr>
                 <th>Total New Clients :</th>
-                <td> 10 </td>
+                <td>
+                <?php
+                    $sql4 = "SELECT id FROM client  where DATE(reg_date) BETWEEN '$start' AND '$end' order by id DESC";
+                    $result4 = $conn->query($sql4);
+                    echo($result4->num_rows);
+                ?>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -67,12 +115,9 @@ if ($result->num_rows > 0) {
         <thead>
             <tr>
                 <th class="border-top-0">S.No</th>
-                <th class="border-top-0">Invoice No.</th>
-                <th class="border-top-0">Payment Method</th>
-                <th class="border-top-0">Date</th>
-                <th class="border-top-0">Total Amount</th>
-                <th class="border-top-0">Paid Amount</th>
-                <th class="border-top-0">Balance Amount</th>
+                <th class="border-top-0">Product Code</th>
+                <th class="border-top-0">Product Name</th>
+                <th class="border-top-0">Units Sold</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -81,12 +126,16 @@ if ($result->num_rows > 0) {
         ?>
         <tr>
             <td><?php echo($i)?></td>
-            <td><?php echo($row['id'])?></td>
-            <td><?php echo($row['payment'])?></td>
-            <td><?php echo($row['reg_date'])?></td>
-            <td>₹ <?php echo($row['total'])?></td>
-            <td>₹ <?php echo($row['paid'])?></td>
-            <td>₹ <?php echo($row['total']-$row['paid'])?></td>
+            <td><?php echo($row['code'])?></td>
+            <td><?php echo($row['name'])?></td>
+            <td>
+                <?php 
+                    $code = $row['code'];
+                    $sql4 = "SELECT id FROM bill where DATE(reg_date) BETWEEN '$start' AND '$end' order by id DESC";
+                    $result4 = $conn->query($sql4);
+                    echo($result4->num_rows);
+                ?>
+            </td>
         </tr>
         <?php
             $i++;
