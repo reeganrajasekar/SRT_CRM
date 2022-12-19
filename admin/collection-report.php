@@ -55,7 +55,29 @@
         </div>
     </div>
 
-    <script>
+<script>
+function getuser(){
+  var id= $('#usermob').val();
+  if(id != '')
+  {
+    $("#search_btn").prop('disabled', true)
+   $.ajax({
+    url:"/admin/api/getuser.php?mob="+id,
+    method:"GET",
+    dataType:"JSON",
+    success:function(data)
+    {
+     if(data=="0"){
+        alert("User Not Found!")
+        $("#client_btn").prop('disabled', true)
+        $("#search_btn").prop('disabled', false)
+     }else{
+        $("#client_btn").prop('disabled', false)
+     }
+    }
+   })
+  }
+};
         function changed(){
             let type = $("#type").val()
             if(type==0){
@@ -122,31 +144,26 @@
             }else if(type==3){
                 $("#btn").html(`
                 <form class="container row mt-3" action="/admin/reports/client.php" method="GET">
-                    <div class="mb-3 col-12">
-                        <label for="floatingInput" class="form-label">Mobile No :</label>
-                        <input type="number" placeholder="Enter Client Mobile Number" class="form-control" id="floatingInput" required name="mob">
+                    <div class="col-9">
+                        <div class="form-group">
+                            <label >Client Mobile No</label>
+                            <input type="number" name="mob" required id="usermob" class="form-control ps-0 form-control-line" placeholder="Mobile no">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <button id="search_btn" class="btn btn-primary mt-4 w-100" onclick="getuser()" style="background-color:#1e88e5;"><i class="mdi mdi-magnify"></i></button>
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="floatingInput" class="form-label">Payment Method :</label>
-                        <select name="method" required class="form-select" id="type" aria-label="Default select example">
-                            <option selected disabled value="">Select Payment Method</option>
-                            <option value="all">All</option>
-                            <option value="Cash">Cash</option>
-                            <option value="Online (Gpay,etc.,)">Online (Gpay,etc.,)</option>
-                        </select>
+                        <label for="floatingInput" class="form-label">Start Date :</label>
+                        <input type="date" class="form-control" id="floatingInput" required name="start">
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label for="floatingInput"  class="form-label">Payment Details :</label>
-                        <select name="payment" required class="form-select" id="type" aria-label="Default select example">
-                            <option selected disabled value="">Select Payment Details</option>
-                            <option value="all">All</option>
-                            <option value="unpaid">Unpaid</option>
-                            <option value="paid">Paid</option>
-                        </select>
+                        <label for="floatingInput" class="form-label">End Date :</label>
+                        <input type="date" class="form-control" id="floatingInput" required name="end">
                     </div>
                     <br>
                     <center>
-                        <button class="mt-4 btn btn-primary w-30">Download</button>
+                        <button id="client_btn" disabled class="mt-4 btn btn-primary w-30">Download</button>
                     </center>
                 </form>
                 `)

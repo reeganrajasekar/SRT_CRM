@@ -47,7 +47,7 @@
                             </div>
 
                             <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="usermob" required placeholder="Enter Mobile No" name="mob">
+                                <input type="number" class="form-control" id="usermob" required placeholder="Enter Mobile No" name="mob">
                                 <label for="name">Mobile/Phone No</label>
                             </div>
 
@@ -75,7 +75,7 @@
                                     <div class="col-9">
                                         <div class="form-group">
                                             <label >Client Mobile No</label>
-                                            <input onchange="changemob()" type="text" id="mob" class="form-control ps-0 form-control-line" placeholder="Mobile no">
+                                            <input onchange="changemob()" type="number" id="mob" class="form-control ps-0 form-control-line" placeholder="Mobile no">
                                         </div>
                                     </div>
                                     <div class="col-3">
