@@ -3,6 +3,7 @@
 
 <?php include 'includes/header.php'?>
 <?php include 'includes/db.php'?>
+<script src="https://momentjs.com/downloads/moment.min.js"></script>
 
 <body>
     <div class="preloader">
@@ -140,7 +141,7 @@
                                                     echo($row['username']);
                                                 ?>
                                             </td>
-                                            <td><?php echo($row['reg_date'])?></td>
+                                            <td><script>document.write(moment("<?php echo($row["reg_date"])?>").format('lll'))</script></td>
                                             <td><?php echo($row['payment'])?></td>
                                             <td>₹ <?php echo($row['total'])?></td>
                                             <td>

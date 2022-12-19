@@ -130,10 +130,18 @@ if ($result->num_rows > 0) {
             <td><?php echo($row['name'])?></td>
             <td>
                 <?php 
-                    $code = $row['code'];
-                    $sql4 = "SELECT id FROM bill where DATE(reg_date) BETWEEN '$start' AND '$end' order by id DESC";
+                    $id = $row['id'];
+                    $sql4 = "SELECT items FROM bill where  DATE(reg_date) BETWEEN '$start' AND '$end' order by id DESC";
                     $result4 = $conn->query($sql4);
-                    echo($result4->num_rows);
+                    $sold=0;
+                    while($row4 = $result4->fetch_assoc()) {
+                        foreach(json_decode($row4["items"]) as $k){
+                            if($k[0]==$id){
+                                $sold = $sold+$k[1];
+                            }
+                        }
+                    }
+                    echo($sold);
                 ?>
             </td>
         </tr>
@@ -146,7 +154,7 @@ if ($result->num_rows > 0) {
         
 <?php
 } else {
-    echo "<p style='text-align:center'>No Payments Found</p>";
+    echo "<p style='text-align:center'>No Invoices Found</p>";
 }
 $conn->close();
 ?>
