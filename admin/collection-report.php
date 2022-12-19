@@ -84,6 +84,41 @@
                     </center>
                 </form>
                 `)
+            }else if(type==2){
+                $("#btn").html(`
+                <form class="container row" action="/admin/reports/payment.php" method="GET" style="margin:20px">
+                    <div class="mb-3 col-md-6">
+                        <label for="floatingInput" class="form-label">Start Date :</label>
+                        <input type="date" class="form-control" id="floatingInput" required name="start">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="floatingInput" class="form-label">End Date :</label>
+                        <input type="date" class="form-control" id="floatingInput" required name="end">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="floatingInput" class="form-label">Payment Method :</label>
+                        <select name="method" required class="form-select" id="type" aria-label="Default select example">
+                            <option selected disabled value="">Select Payment Method</option>
+                            <option value="all">All</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Online (Gpay,etc.,)">Online (Gpay,etc.,)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="floatingInput"  class="form-label">Payment Details :</label>
+                        <select name="payment" required class="form-select" id="type" aria-label="Default select example">
+                            <option selected disabled value="">Select Payment Details</option>
+                            <option value="all">All</option>
+                            <option value="unpaid">Unpaid</option>
+                            <option value="paid">Paid</option>
+                        </select>
+                    </div>
+                    <br>
+                    <center>
+                        <button class="mt-4 btn btn-primary w-30">Download</button>
+                    </center>
+                </form>
+                `)
             }
         }
     </script>
