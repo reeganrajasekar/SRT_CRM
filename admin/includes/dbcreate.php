@@ -54,6 +54,7 @@ $sql = "CREATE TABLE product (
     name VARCHAR(500) NOT NULL,
     rate INT(50) NOT NULL,
     stock INT(50) NOT NULL,
+    quantity VARCHAR(500) NOT NULL,
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
     
