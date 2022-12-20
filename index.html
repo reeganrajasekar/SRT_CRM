@@ -35,39 +35,28 @@
         }
         
         .gallery {
-  display: flex;
-  padding: 2px;
-  transition: 0.3s;
-}
-.gallery:hover .gallery__image {
-  filter: grayscale(0);
-}
-.gallery__column {
-  display: flex;
-  flex-direction: column;
-  width: 25%;
-}
-.gallery__link {
-  margin: 2px;
-  overflow: hidden;
-}
-.gallery__link:hover .gallery__image {
-  filter: grayscale(0);
-}
-.gallery__link:hover .gallery__caption {
-  opacity: 1;
-}
-.gallery__thumb {
-  position: relative;
-}
-.gallery__image {
-  display: block;
-  width: 100%;
-  transition: 0.3s;
-}
-.gallery__image:hover {
-  transform: scale(1.1);
-}
+            display: flex;
+            transition: 0.3s;
+        }
+        .gallery:hover .gallery__image {
+            filter: grayscale(0);
+        }
+        .gallery__column {
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+        }
+        .gallery__image {
+            display: block;
+            width: 100%;
+            margin:2px;
+            transition: 0.3s;
+            padding: 2px;
+            overflow: hidden !important;
+        }
+        .gallery__image:hover {
+            transform: scale(0.9)
+        }
     </style>
 </head>
 <body>
@@ -160,11 +149,64 @@
         </section>
     </section>
     <br><br>
+
     <section>
         <div class="gallery">
             <div class="gallery__column">
+                <figure class="gallery__thumb shadow">
+                    <img src="/static/images/arial/arial1.jpeg" class="gallery__image">
+                </figure>
+
+                <figure class="gallery__thumb ">
+                    <img src="/static/images/arial/arial2.jpeg" class="gallery__image">
+                </figure>
+
                 <figure class="gallery__thumb">
-                    <img src="/static/images/" class="gallery__image">
+                    <img src="/static/images/arial/arial3.jpeg" class="gallery__image">
+                </figure>
+
+            </div>
+
+            <div class="gallery__column">
+                <figure class="gallery__thumb shadow">
+                    <img src="/static/images/arial/arial4.jpeg" class="gallery__image">
+                </figure>
+
+                <figure class="gallery__thumb">
+                    <img src="/static/images/arial/arial5.jpeg" class="gallery__image">
+                </figure>
+
+                <figure class="gallery__thumb">
+                    <img src="/static/images/arial/arial6.jpeg" class="gallery__image">
+                </figure>
+            </div>
+
+            <div class="gallery__column">
+                <figure class="gallery__thumb shadow">
+                    <img src="/static/images/arial/arial7.jpeg" class="gallery__image">
+                </figure>
+
+                <figure class="gallery__thumb">
+                    <img src="/static/images/arial/arial8.jpeg" class="gallery__image">
+                </figure>
+
+                <figure class="gallery__thumb">
+                    <img src="/static/images/arial/arial9.jpeg" class="gallery__image">
+                </figure>
+
+            </div>
+
+            <div class="gallery__column">
+                <figure class="gallery__thumb shadow">
+                    <img src="/static/images/arial/arial10.jpeg" class="gallery__image">
+                </figure>
+
+                <figure class="gallery__thumb">
+                    <img src="/static/images/arial/arial11.jpeg" class="gallery__image">
+                </figure>
+
+                <figure class="gallery__thumb">
+                    <img src="/static/images/arial/arial12.jpeg" class="gallery__image">
                 </figure>
             </div>
         </div>
