@@ -117,6 +117,7 @@ if ($result->num_rows > 0) {
                 <th class="border-top-0">S.No</th>
                 <th class="border-top-0">Product Code</th>
                 <th class="border-top-0">Product Name</th>
+                <th class="border-top-0">Product Quantity</th>
                 <th class="border-top-0">Units Sold</th>
             </tr>
         </thead>
@@ -128,6 +129,7 @@ if ($result->num_rows > 0) {
             <td><?php echo($i)?></td>
             <td><?php echo($row['code'])?></td>
             <td><?php echo($row['name'])?></td>
+            <td><?php echo($row['quantity'])?></td>
             <td>
                 <?php 
                     $id = $row['id'];
