@@ -45,6 +45,11 @@
                                     <label for="name">Product Name</label>
                                 </div>
 
+                                <div class="form-floating mt-3 mb-3">
+                                    <input type="text" class="form-control" required id="quantity" placeholder="Enter Product quantity" name="quantity">
+                                    <label for="quantity">Product Quantity</label>
+                                </div>
+
                                 <div class="form-floating mt-3 mb-3"> 
                                     <input type="number" class="form-control" required id="prize" placeholder="Enter Product Prize" name="rate">
                                     <label for="prize">Product Prize</label>
@@ -97,6 +102,7 @@
                                                 <tr>
                                                     <th class="border-top-0">Code</th>
                                                     <th class="border-top-0">Product Name</th>
+                                                    <th class="border-top-0">Product Quantity</th>
                                                     <th class="border-top-0">Prize</th>
                                                     <th class="border-top-0">Stock Available</th>
                                                     <th class="border-top-0">Action</th>
@@ -109,6 +115,7 @@
                                             <tr>
                                                 <td><?php echo($row['code'])?></td>
                                                 <td><?php echo($row['name'])?></td>
+                                                <td><?php echo($row['quantity'])?></td>
                                                 <td>₹<?php echo($row['rate'])?></td>
                                                 <td><?php echo($row['stock'])?></td>
                                                 <td>
@@ -134,6 +141,11 @@
                                                                 <div class="form-floating mt-3 mb-3">
                                                                     <input type="text" class="form-control" value="<?php echo($row["name"])?>" required id="name" placeholder="Enter Product Name" name="name">
                                                                     <label for="name">Product Name</label>
+                                                                </div>
+
+                                                                <div class="form-floating mt-3 mb-3">
+                                                                    <input type="text" class="form-control" value="<?php echo($row["quantity"])?>" required id="quantity" placeholder="Enter Product quantity" name="quantity">
+                                                                    <label for="quantity">Product Quantity</label>
                                                                 </div>
 
                                                                 <div class="form-floating mt-3 mb-3"> 
