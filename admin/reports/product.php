@@ -36,6 +36,7 @@ if ($result->num_rows > 0) {
                 <th class="border-top-0">S.No</th>
                 <th class="border-top-0">Code</th>
                 <th class="border-top-0">Product Name</th>
+                <th class="border-top-0">Product Quantity</th>
                 <th class="border-top-0">Prize</th>
                 <th class="border-top-0">Stock</th>
             </tr>
@@ -48,6 +49,7 @@ if ($result->num_rows > 0) {
             <td><?php echo($i)?></td>
             <td><?php echo($row['code'])?></td>
             <td><?php echo($row['name'])?></td>
+            <td><?php echo($row['quantity'])?></td>
             <td>₹<?php echo($row['rate'])?></td>
             <td><?php echo($row['stock'])?></td>
         </tr>
