@@ -320,6 +320,7 @@ function form_valid(){
                                     $('#totalamount').val(get);
                                     $('#calcamount').val(get);
                                     $('#paidamount').prop("max",get);
+                                    $('#bal').prop("min",get);
                                     
                                 };
                                 </script>
@@ -379,7 +380,7 @@ function form_valid(){
                                         <label for="code">Total Amount</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="number" class="form-control" onchange="balance()" required placeholder="Enter Given Amount" >
+                                        <input type="number" class="form-control" onchange="balance()" id="bal" required placeholder="Enter Given Amount" >
                                         <label for="code">Given Amount</label>
                                     </div>
                                     <p class="text-center pt-3" style="color:#000;font-size:22px;font-weight:500">Balance Amount : ₹<span style="color:#000;font-size:22px;font-weight:800" id="balamount"></span></p>
@@ -388,7 +389,13 @@ function form_valid(){
                         </div>
                     </div>
 
-                   
+                    <script>
+                        function balance(){
+                            baltot = $("#calcamount").val()
+                            tot = $("#bal").val()
+                            $("#balamount").html(parseFloat(tot)-parseFloat(baltot))
+                        }
+                    </script>
 
                     
                 </div>
