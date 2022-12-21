@@ -83,7 +83,7 @@
                             <div class="card-body">
                                 <h3 class="card-title"><i class="fa fa-users fa-3x text-info"> 
                                 <?php
-                                        $sql = "SELECT id FROM client";
+                                        $sql = "SELECT id FROM client where NOT id=1";
                                         $result = $conn->query($sql);
                                         echo($result->num_rows);
                                     ?>
