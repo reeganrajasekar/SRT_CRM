@@ -318,6 +318,7 @@ function form_valid(){
                                         }
                                     }
                                     $('#totalamount').val(get);
+                                    $('#calcamount').val(get);
                                     $('#paidamount').prop("max",get);
                                     
                                 };
@@ -360,7 +361,35 @@ function form_valid(){
                         </div>
                         <a href="invoice.php" class="btn btn-danger d-md-inline-block btn-md text-white">Cancel</a>
                         <button class="btn btn-success d-md-inline-block btn-md text-white">Save</button>
-                </form>
+                    </form>
+                    <div style="display:flex;justify-content:flex-end">
+                        <button data-bs-toggle="modal" data-bs-target="#calc" class="btn btn-success d-md-inline-block btn-md text-white">Balance Calculator</button>
+                    </div>
+
+                    <div class="modal fade" id="calc">
+                        <div class="modal-dialog">
+                            <div class="modal-content" style="border-radius:10px !important">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Balance Calculator</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" id="calcamount" disabled>
+                                        <label for="code">Total Amount</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" onchange="balance()" required placeholder="Enter Given Amount" >
+                                        <label for="code">Given Amount</label>
+                                    </div>
+                                    <p class="text-center pt-3" style="color:#000;font-size:22px;font-weight:500">Balance Amount : ₹<span style="color:#000;font-size:22px;font-weight:800" id="balamount"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
                     
                 </div>
             </div>
