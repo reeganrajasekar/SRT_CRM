@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../includes/db.php';
 
 $userid = $_POST["userid"];
@@ -11,15 +11,15 @@ $paid = $_POST["paidamount"];
 
 $totalitems = $_POST["overitems"];
 $data = [];
-for($i=0;$i<$totalitems;$i++){
-    if($_POST["itemid".$i]){
-        $id = $_POST["itemid".$i];
-        $data[$i]=[$_POST["itemid".$i],$_POST["totalitem".$i],$_POST["rate".$i],$_POST["amount".$i]];
+for ($i = 0; $i < $totalitems; $i++) {
+    if ($_POST["itemid" . $i]) {
+        $id = $_POST["itemid" . $i];
+        $data[$i] = [$_POST["itemid" . $i], $_POST["totalitem" . $i], $_POST["rate" . $i], $_POST["amount" . $i]];
         $sql = "SELECT stock FROM product where id='$id'";
         $result = $conn->query($sql);
         $stock = 0;
-        while($row = $result->fetch_assoc()) {
-            $stock = $row["stock"]-$_POST["totalitem".$i];
+        while ($row = $result->fetch_assoc()) {
+            $stock = $row["stock"] - $_POST["totalitem" . $i];
         }
         $sql = "UPDATE product SET stock='$stock' WHERE id=$id";
         $conn->query($sql);

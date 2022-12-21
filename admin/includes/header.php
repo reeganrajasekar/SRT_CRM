@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../static/images/logo.png">
     <link href="/admin/css/style.min.css" rel="stylesheet">
     <style>
-        *{
+        * {
             user-select: none;
         }
     </style>

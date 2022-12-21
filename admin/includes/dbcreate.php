@@ -1,4 +1,4 @@
-<?php 
+<?php
 require("./db.php");
 
 // client
@@ -9,11 +9,9 @@ $sql = "CREATE TABLE client (
     address VARCHAR(500) NOT NULL,
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
-    
+
 if ($conn->query($sql) === TRUE) {
     echo "Table Client created successfully<br>";
-} else {
-    echo "Error creating table: " . $conn->error;
 }
 
 $sql = "INSERT INTO client (name,mob,address)
@@ -38,11 +36,9 @@ $sql = "CREATE TABLE bill (
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (userid) REFERENCES client(id)
 )";
-    
+
 if ($conn->query($sql) === TRUE) {
     echo "Table Bill created successfully<br>";
-} else {
-    echo "Error creating table: " . $conn->error;
 }
 
 
@@ -57,11 +53,9 @@ $sql = "CREATE TABLE product (
     quantity VARCHAR(500) NOT NULL,
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
-    
+
 if ($conn->query($sql) === TRUE) {
     echo "Table Product created successfully<br>";
-} else {
-    echo "Error creating table: " . $conn->error;
 }
 
 

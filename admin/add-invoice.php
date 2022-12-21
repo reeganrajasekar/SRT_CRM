@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<?php include 'includes/db.php'?>
-
-<?php include 'includes/header.php'?>
+<?php include 'includes/db.php' ?>
+<?php include 'includes/header.php' ?>
 <body>
 <div class="preloader">
     <div class="lds-ripple">
@@ -10,10 +9,9 @@
         <div class="lds-pos"></div>
     </div>
 </div>
-
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-<?php include 'includes/topbar.php'?>
-<?php include 'includes/sidebar.php'?>
+<?php include 'includes/topbar.php' ?>
+<?php include 'includes/sidebar.php' ?>
     <div class="page-wrapper">
         <div class="page-breadcrumb">
             <div class="row align-items-center">
@@ -31,7 +29,6 @@
                 </div>
             </div>
         </div>
-
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">
                 <div class="modal-content" style="border-radius:10px !important">
@@ -62,8 +59,6 @@
                 </div>
             </div>
         </div>
-
-            
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
@@ -99,20 +94,15 @@
                     </div>
                     </div>
                 </div>
-
-
-
 <script>
 function changemob(){
     var mob= $('#mob').val();
     $("#mainusermob").val(mob)
 }
-
 function changename(){
     var mob= $('#name').val();
     $("#mainusername").val(mob)
 }
-
 function changeaddress(){
     var mob= $('#address').val();
     $("#mainuseraddress").val(mob)
@@ -147,7 +137,6 @@ function getuser(){
    })
   }
 };
-
 function adduser(){
   var name= $('#username').val();
   var address= $('#useraddress').val();
@@ -171,8 +160,6 @@ function adduser(){
    })
   }
 };
-
-
 function form_valid(){
     if($("#mainuser").val()=="1" && $("#mainusermob").val()==""){
         document.getElementById("mob").focus();
@@ -182,12 +169,6 @@ function form_valid(){
     }
 }
 </script>
-
-
-
-
-
-
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
@@ -230,11 +211,11 @@ function form_valid(){
                                                 <?php
                                                 $sql = "SELECT id ,name FROM product where stock>0";
                                                 $result = $conn->query($sql);
-            
+
                                                 if ($result->num_rows > 0) {
-                                                    while($row = $result->fetch_assoc()) {
+                                                    while ($row = $result->fetch_assoc()) {
                                                 ?>
-                                                    <option value="<?php echo($row["id"])?>"><?php echo($row["name"])?></option>
+                                                    <option value="<?php echo ($row["id"]) ?>"><?php echo ($row["name"]) ?></option>
                                                 <?php
                                                     }
                                                 }
@@ -264,7 +245,6 @@ function form_valid(){
                                     function insertAfter(referenceNode, newNode) {
                                         referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
                                     }
-
                                     var el = document.createElement("tr");
                                     el.id = 'i'+(i+1);
                                     var div = document.getElementById('i'+i);
@@ -272,9 +252,7 @@ function form_valid(){
                                     document.getElementById('overitems').value=i+1;
                                     window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
                                 }
-
                                 addlist(i)
-
                                 function delete_node(item){
                                     document.getElementById("i"+item).remove();
                                     var get=0;
@@ -285,7 +263,6 @@ function form_valid(){
                                     }
                                     $('#totalamount').val(get);
                                 }
-
                                 function getproduct(item){
                                     var product_code= $('#itemid'+item).val();
                                     if(true)
@@ -306,7 +283,6 @@ function form_valid(){
                                         })
                                     }
                                 };
-
                                 function amount(item){
                                     var rate= $('#rate'+item).val();
                                     var quan= $('#totalitem'+item).val();
@@ -324,8 +300,6 @@ function form_valid(){
                                     
                                 };
                                 </script>
-
-                               
                             <tr>
                                 <td></td>
                                 <td></td>
@@ -352,7 +326,6 @@ function form_valid(){
                                     </select>
                                 </div>
                             </div>
-
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Paid Amount</label>
@@ -366,7 +339,6 @@ function form_valid(){
                     <div style="display:flex;justify-content:flex-end">
                         <button data-bs-toggle="modal" data-bs-target="#calc" class="btn btn-success d-md-inline-block btn-md text-white">Balance Calculator</button>
                     </div>
-
                     <div class="modal fade" id="calc">
                         <div class="modal-dialog">
                             <div class="modal-content" style="border-radius:10px !important">
@@ -388,27 +360,21 @@ function form_valid(){
                             </div>
                         </div>
                     </div>
-
                     <script>
                         function balance(){
                             baltot = $("#calcamount").val()
                             tot = $("#bal").val()
                             $("#balamount").html(parseFloat(tot)-parseFloat(baltot))
                         }
-                    </script>
-
-                    
+                    </script>                    
                 </div>
             </div>
         </div>
     </div>
-</div>
-
+                    </div>
             </div>
         </div>
     </div>
-
-    <?php include 'includes/footer.php'?>
+    <?php include 'includes/footer.php' ?>
 </body>
-
 </html>

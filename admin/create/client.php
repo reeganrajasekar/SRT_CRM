@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../includes/db.php';
 
 $name = $_POST["name"];

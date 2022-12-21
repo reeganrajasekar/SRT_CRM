@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
-<?php include 'includes/header.php'?>
+<?php include 'includes/header.php' ?>
 
 <body>
     <div class="preloader">
@@ -13,8 +13,8 @@
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
 
-        <?php include 'includes/topbar.php'?>
-        <?php include 'includes/sidebar.php'?>
+        <?php include 'includes/topbar.php' ?>
+        <?php include 'includes/sidebar.php' ?>
 
         <div class="page-wrapper">
             <div class="page-breadcrumb">
@@ -32,21 +32,22 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title"><i class="mdi me-2 mdi-chart-areaspline"></i>Generate Report</h4>
-            
-                                    <div class="col-md-6 ">
-                                        <select onchange="changed()" class="form-select" id="type" aria-label="Default select example">
-                                            <option selected>Select Category</option>
-                                            <option value="0">General Report</option>
-                                            <option value="1">Product</option>
-                                            <option value="2">Payment</option>
-                                            <option value="3">Clients</option>
-                                        </select>
-                                    </div>
 
-                                    <div id="btn">
-                                        
-                                    </div>
-                                
+                                <div class="col-md-6 ">
+                                    <select onchange="changed()" class="form-select" id="type"
+                                        aria-label="Default select example">
+                                        <option selected>Select Category</option>
+                                        <option value="0">General Report</option>
+                                        <option value="1">Product</option>
+                                        <option value="2">Payment</option>
+                                        <option value="3">Clients</option>
+                                    </select>
+                                </div>
+
+                                <div id="btn">
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -55,32 +56,30 @@
         </div>
     </div>
 
-<script>
-function getuser(){
-  var id= $('#usermob').val();
-  if(id != '')
-  {
-    $("#search_btn").prop('disabled', true)
-   $.ajax({
-    url:"/admin/api/getuser.php?mob="+id,
-    method:"GET",
-    dataType:"JSON",
-    success:function(data)
-    {
-     if(data=="0"){
-        alert("User Not Found!")
-        $("#client_btn").prop('disabled', true)
-        $("#search_btn").prop('disabled', false)
-     }else{
-        $("#client_btn").prop('disabled', false)
-     }
-    }
-   })
-  }
-};
-        function changed(){
+    <script>
+        function getuser() {
+            var id = $('#usermob').val();
+            if (id != '') {
+                $("#search_btn").prop('disabled', true)
+                $.ajax({
+                    url: "/admin/api/getuser.php?mob=" + id,
+                    method: "GET",
+                    dataType: "JSON",
+                    success: function (data) {
+                        if (data == "0") {
+                            alert("User Not Found!")
+                            $("#client_btn").prop('disabled', true)
+                            $("#search_btn").prop('disabled', false)
+                        } else {
+                            $("#client_btn").prop('disabled', false)
+                        }
+                    }
+                })
+            }
+        };
+        function changed() {
             let type = $("#type").val()
-            if(type==0){
+            if (type == 0) {
                 $("#btn").html(`
                 <form class="container row mt-3" action="/admin/reports/index.php" method="GET">
                     <div class="mb-3 col-md-6">
@@ -97,7 +96,7 @@ function getuser(){
                     </center>
                 </form>
                 `)
-            }else if(type==1){
+            } else if (type == 1) {
                 $("#btn").html(`
                 <form class="container row mt-3" action="/admin/reports/product.php" method="GET">
                     <br>
@@ -106,7 +105,7 @@ function getuser(){
                     </center>
                 </form>
                 `)
-            }else if(type==2){
+            } else if (type == 2) {
                 $("#btn").html(`
                 <form class="container row mt-3" action="/admin/reports/payment.php" method="GET">
                     <div class="mb-3 col-md-6">
@@ -141,7 +140,7 @@ function getuser(){
                     </center>
                 </form>
                 `)
-            }else if(type==3){
+            } else if (type == 3) {
                 $("#btn").html(`
                 <form class="container row mt-3" action="/admin/reports/client.php" method="GET">
                     <div class="col-9">
@@ -171,8 +170,8 @@ function getuser(){
         }
     </script>
 
-    <?php include 'includes/footer.php'?>
-   
+    <?php include 'includes/footer.php' ?>
+
 </body>
 
 </html>

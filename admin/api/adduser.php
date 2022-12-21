@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../includes/db.php';
 
 $name = $_GET["name"];
@@ -10,7 +10,7 @@ VALUES ('$name','$mob','$address')";
 
 if ($conn->query($sql) === TRUE) {
     echo json_encode("0");
-}else{
+} else {
     echo json_encode("ok");
 }
 
