@@ -219,7 +219,6 @@
                                 }
                                 $conn->close();
                                 ?>
-    ??
 
 
                                     <p style="text-align:center;line-height:3.5;font-size:16px">
@@ -231,10 +230,7 @@
                                         echo '<a style="margin:4px;padding:10px;border-radius:2px;border:1px solid #aaa;color:#444;text-decoration:none" href = "?page=' . $page . '">' . $page . ' </a>';
                                     }
                                 }
-                                ?>;
-                                        }
-                                        }
-                                        ??
+                                ?>
                                     </p>
 
 

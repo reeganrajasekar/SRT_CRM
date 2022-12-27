@@ -35,11 +35,10 @@
     border-top: 1px solid  #5D6975;
     border-bottom: 1px solid  #5D6975;
     color: #5D6975;
-    font-size: 2.4em;
+    font-size: 2.0em;
     line-height: 1.4em;
     font-weight: normal;
     text-align: center;
-    margin: 0 0 20px 0;
   }
   
   #project {
@@ -48,13 +47,14 @@
   
   #project p {
     color: #001028;
-    font-size: 16px !important;
-    font-weight: 800;
+    font-size: 14px !important;
+    font-weight: 600;
+    line-height: 0.8;
   }
 
   #project p span{
     color: #888;
-    font-size: 1.0em !important;
+    font-size: 14px !important;
     font-weight: 500;
     text-align: right;
     padding-right:10px;
@@ -76,7 +76,6 @@
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
-    margin-bottom: 20px;
   }
   
   table tr:nth-child(2n-1) td {
@@ -86,7 +85,7 @@
   table th,
   table td {
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
   }
   
   table th {
@@ -110,12 +109,12 @@
   table td.unit,
   table td.qty,
   table td.total {
-    font-size: 1.2em;
+    font-size: 16px;
   }
   
   table td.grand {
     border-top: 1px solid #5D6975;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bolder;
   }
   

@@ -12,9 +12,15 @@ if ($result->num_rows > 0) {
   <title>Bill-<?php echo ($id); ?></title>
   <link rel="stylesheet" href="/admin/css/stylebill.css" media="all" />
   <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <style>
+
+  body {
+        margin-left: auto;
+        margin-right: auto;
+  }
+    </style>
 </head>
 <body id="divId">
-  <header class="clearfix">
     <div id="logo">
       <img src="/static/images/logo.png">
       <div id="company" class="clearfix">
@@ -34,7 +40,6 @@ if ($result->num_rows > 0) {
         <script>document.write(moment("<?php echo ($row["reg_date"]) ?>").format('LLL'))</script>
       </p>
     </div>
-  </header>
   <main>
     <table>
       <thead>
