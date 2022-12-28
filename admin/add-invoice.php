@@ -161,7 +161,7 @@ function adduser(){
   }
 };
 function form_valid(){
-    if($("#mainuser").val()=="1" && $("#mainusermob").val()==""){
+    if($("#mainuser").val()=="1" && $("#mainusermob").val()=="" || $("#mainusername").val()=="" || $("#mainuseraddres").val()==""){
         document.getElementById("mob").focus();
         return false
     }else{
