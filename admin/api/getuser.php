@@ -7,10 +7,10 @@ $sql = "SELECT * FROM client where mob='$mob'";
 $result = $conn->query($sql);
 if ($result->num_rows == 1) {
     while ($row = $result->fetch_assoc()) {
-        $data["name"] = $row["name"];
+        $data["name"] = htmlspecialchars_decode($row["name"]);
         $data["id"] = $row["id"];
-        $data["mob"] = $row["mob"];
-        $data["address"] = $row["address"];
+        $data["mob"] = htmlspecialchars_decode($row["mob"]);
+        $data["address"] = htmlspecialchars_decode($row["address"]);
     }
     echo json_encode($data);
 } else {
