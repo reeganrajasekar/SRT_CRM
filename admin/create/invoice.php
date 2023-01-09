@@ -1,13 +1,19 @@
 <?php
 include '../includes/db.php';
-$userid = $_POST["userid"];
-$username = $_POST["username"];
-$usermob = $_POST["usermob"];
-$useraddress = $_POST["useraddress"];
-$total = $_POST["totalamount"];
-$payment = $_POST["paymentmethod"];
-$paid = $_POST["paidamount"];
-$totalitems = $_POST["overitems"];
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+$userid = test_input($_POST["userid"]);
+$username = test_input($_POST["username"]);
+$usermob = test_input($_POST["usermob"]);
+$useraddress = test_input($_POST["useraddress"]);
+$total = test_input($_POST["totalamount"]);
+$payment = test_input($_POST["paymentmethod"]);
+$paid = test_input($_POST["paidamount"]);
+$totalitems = test_input($_POST["overitems"]);
 $data = [];
 for ($i = 0; $i < $totalitems; $i++) {
     if ($_POST["itemid" . $i]) {

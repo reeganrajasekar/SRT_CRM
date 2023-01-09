@@ -1,8 +1,14 @@
 <?php
 include '../includes/db.php';
-$name = $_POST["name"];
-$mob = $_POST["mob"];
-$address = $_POST["address"];
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+$name = test_input($_POST["name"]);
+$mob = test_input($_POST["mob"]);
+$address = test_input($_POST["address"]);
 $sql = "INSERT INTO client (name,mob,address)
 VALUES ('$name','$mob','$address')";
 if ($conn->query($sql) === TRUE) {

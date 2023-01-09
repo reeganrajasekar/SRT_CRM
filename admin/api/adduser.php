@@ -1,9 +1,14 @@
 <?php
 include '../includes/db.php';
-
-$name = $_GET["name"];
-$mob = $_GET["mob"];
-$address = $_GET["address"];
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+$name = test_input($_GET["name"]);
+$mob = test_input($_GET["mob"]);
+$address = test_input($_GET["address"]);
 
 $sql = "INSERT INTO client (name,mob,address)
 VALUES ('$name','$mob','$address')";
