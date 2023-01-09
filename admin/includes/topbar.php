@@ -6,8 +6,7 @@
                     <h2 style="color:#fff;">SRT <span style="font-size:18px">Admin</span></h2>
                 </b>
             </a>
-            <a class="nav-toggler waves-effect waves-light text-white d-block d-md-none" href="javascript:void(0)"><i
-                    class="ti-menu ti-close"></i></a>
+            <a class="nav-toggler waves-effect waves-light text-white d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
         </div>
         <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
             <ul class="navbar-nav ms-auto">

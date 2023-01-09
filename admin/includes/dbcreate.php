@@ -1,6 +1,5 @@
 <?php
 require("./db.php");
-
 // client
 $sql = "CREATE TABLE client (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -9,19 +8,14 @@ $sql = "CREATE TABLE client (
     address VARCHAR(500) NOT NULL,
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
-
 if ($conn->query($sql) === TRUE) {
     echo "Table Client created successfully<br>";
 }
-
 $sql = "INSERT INTO client (name,mob,address)
 VALUES ('Non-User','0000','0000')";
 
 if ($conn->query($sql) === TRUE) {
 }
-
-
-
 // Bill
 $sql = "CREATE TABLE bill (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -36,13 +30,9 @@ $sql = "CREATE TABLE bill (
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (userid) REFERENCES client(id)
 )";
-
 if ($conn->query($sql) === TRUE) {
     echo "Table Bill created successfully<br>";
 }
-
-
-
 // product
 $sql = "CREATE TABLE product (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -53,13 +43,8 @@ $sql = "CREATE TABLE product (
     quantity VARCHAR(500) NOT NULL,
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
-
 if ($conn->query($sql) === TRUE) {
     echo "Table Product created successfully<br>";
 }
-
-
 $conn->close();
-
-
 ?>

@@ -12,88 +12,88 @@
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
 <?php include 'includes/topbar.php' ?>
 <?php include 'includes/sidebar.php' ?>
-    <div class="page-wrapper">
-        <div class="page-breadcrumb">
-            <div class="row align-items-center">
-                <div class="col-md-6 col-8 align-self-center">
-                    <h3 class="page-title mb-0 p-0"><i class="mdi me-2 mdi-file-multiple"></i> Add Invoice</h3>
-                    <div class="d-flex align-items-center">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Invoice</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"> Add Invoice</li>
-                            </ol>
-                        </nav>
-                    </div>
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row align-items-center">
+            <div class="col-md-6 col-8 align-self-center">
+                <h3 class="page-title mb-0 p-0"><i class="mdi me-2 mdi-file-multiple"></i> Add Invoice</h3>
+                <div class="d-flex align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Invoice</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> Add Invoice</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content" style="border-radius:10px !important">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Add User</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form onsubmit="return false">
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="username" required placeholder="Enter Name" name="name">
-                                <label for="code">User Name</label>
-                            </div>
+    </div>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content" style="border-radius:10px !important">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add User</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit="return false">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="username" required placeholder="Enter Name" name="name">
+                            <label for="code">User Name</label>
+                        </div>
 
-                            <div class="form-floating mt-3 mb-3">
-                                <input type="number" class="form-control" id="usermob" required placeholder="Enter Mobile No" name="mob">
-                                <label for="name">Mobile/Phone No</label>
-                            </div>
+                        <div class="form-floating mt-3 mb-3">
+                            <input type="number" class="form-control" id="usermob" required placeholder="Enter Mobile No" name="mob">
+                            <label for="name">Mobile/Phone No</label>
+                        </div>
 
-                            <div class="form-floating mt-3 mb-3"> 
-                                <input type="text" class="form-control" id="useraddress" required placeholder="Enter address" name="address">
-                                <label for="prize">Address</label>
-                            </div>
+                        <div class="form-floating mt-3 mb-3"> 
+                            <input type="text" class="form-control" id="useraddress" required placeholder="Enter address" name="address">
+                            <label for="prize">Address</label>
+                        </div>
 
-                            <button onclick="adduser()" class="btn btn-primary w-100" style="background-color:#1e88e5;font-weight:700;height:50px">Add</button>
-                        </form>
-                    </div>
+                        <button onclick="adduser()" class="btn btn-primary w-100" style="background-color:#1e88e5;font-weight:700;height:50px">Add</button>
+                    </form>
                 </div>
             </div>
         </div>
-            <div class="container-fluid">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title"><i class="mdi me-2 mdi-file-multiple"></i>Client Information</h4>
-                        <div class="form-horizontal form-material mx-2">
+    </div>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"><i class="mdi me-2 mdi-file-multiple"></i>Client Information</h4>
+                <div class="form-horizontal form-material mx-2">
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label >Client Mobile No</label>
-                                            <input onchange="changemob()" type="number" id="mob" class="form-control ps-0 form-control-line" placeholder="Mobile no">
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <button id="search_btn" class="btn btn-primary mt-4 w-100" onclick="getuser()" style="background-color:#1e88e5;"><i class="mdi mdi-magnify"></i></button>
-                                    </div>
+                            <div class="col-9">
+                                <div class="form-group">
+                                    <label >Client Mobile No</label>
+                                    <input onchange="changemob()" type="number" id="mob" class="form-control ps-0 form-control-line" placeholder="Mobile no">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label >Client Name</label>
-                                        <input onchange="changename()" type="text" id="name" class="form-control ps-0 form-control-line" placeholder="Client Name">
-                                    </div>
-                            </div>
-                            <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label >Client Address</label>
-                                        <input onchange="changeaddress()" type="text" id="address" class="form-control ps-0 form-control-line" placeholder="Client Address">
-                                    </div>
+                            <div class="col-3">
+                                <button id="search_btn" class="btn btn-primary mt-4 w-100" onclick="getuser()" style="background-color:#1e88e5;"><i class="mdi mdi-magnify"></i></button>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                            <div class="form-group">
+                                <label >Client Name</label>
+                                <input onchange="changename()" type="text" id="name" class="form-control ps-0 form-control-line" placeholder="Client Name">
+                            </div>
+                    </div>
+                    <div class="col-md-12">
+                            <div class="form-group">
+                                <label >Client Address</label>
+                                <input onchange="changeaddress()" type="text" id="address" class="form-control ps-0 form-control-line" placeholder="Client Address">
+                            </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 <script>
 function changemob(){
     var mob= $('#mob').val();
@@ -108,21 +108,21 @@ function changeaddress(){
     $("#mainuseraddress").val(mob)
 }
 function getuser(){
-  var id= $('#mob').val();
-  $('#usermob').val(id);
-  if(id != '')
-  {
+var id= $('#mob').val();
+$('#usermob').val(id);
+if(id != '')
+{
     $("#search_btn").prop('disabled', true)
-   $.ajax({
+$.ajax({
     url:"/admin/api/getuser.php?mob="+id,
     method:"GET",
     dataType:"JSON",
     success:function(data)
     {
-     if(data=="0"){
+    if(data=="0"){
         $('#myModal').modal('show');
         $("#search_btn").prop('disabled', false)
-     }else{
+    }else{
         $("#name").val(data.name)
         $("#address").val(data.address)
         $("#mainuser").val(data.id)
@@ -132,33 +132,33 @@ function getuser(){
         $("#mob").prop('disabled', true)
         $("#name").prop('disabled', true)
         $("#address").prop('disabled', true)
-     }
     }
-   })
-  }
+    }
+})
+}
 };
 function adduser(){
-  var name= $('#username').val();
-  var address= $('#useraddress').val();
-  var mob= $('#usermob').val();
-  if(true)
-  {
-   $.ajax({
+var name= $('#username').val();
+var address= $('#useraddress').val();
+var mob= $('#usermob').val();
+if(true)
+{
+$.ajax({
     url:"/admin/api/adduser.php?mob="+mob+"&name="+name+"&address="+address,
     method:"GET",
     dataType:"JSON",
     success:function(data)
     {
-     if(data=="0"){
+    if(data=="0"){
         $('#myModal').modal('hide');
         $('#mob').val(mob);
         getuser();
-     }else{
+    }else{
         alert("Something went Wrong")
-     }
     }
-   })
-  }
+    }
+})
+}
 };
 function form_valid(){
     if($("#mainuser").val()=="1" && $("#mainusermob").val()=="" || $("#mainusername").val()=="" || $("#mainuseraddres").val()==""){

@@ -12,22 +12,14 @@ if ($result->num_rows > 0) {
   <title>Bill-<?php echo ($id); ?></title>
   <link rel="stylesheet" href="/admin/css/stylebill.css" media="all" />
   <script src="https://momentjs.com/downloads/moment.min.js"></script>
-    <style>
-
-  body {
-        margin-left: auto;
-        margin-right: auto;
-  }
-    </style>
 </head>
 <body id="divId">
     <div id="logo">
       <img src="/static/images/logo.png">
       <div id="company" class="clearfix">
-        <div>Company Name</div>
-        <div>no , Location</div>
-        <div>(+91) 876959797</div>
-        <div><a href="mailto:company@example.com">company@example.com</a></div>
+        <div>SRT</div>
+        <div>1/49,Main Road<br>Adichapuram<br>Mannargudi</div>
+        <div>(+91) 9444858664</div>
       </div>
     </div>
     <h1>INVOICE</h1>
@@ -83,7 +75,7 @@ if ($result->num_rows > 0) {
 } ?>
   </main>
   <script>
-    print()
+    // print()
   </script>
 </body>
 </html>

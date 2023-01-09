@@ -168,7 +168,7 @@
                                                         <div class="modal-content"
                                                             style="border-radius:10px !important">
                                                             <div class="modal-header">
-                                                                <h4 class="modal-title">Edit Invoice : <?php echo ($username . " - " . $row["id"]) ?></h4>
+                                                                <h4 class="modal-title">Edit Invoice : <?php echo ($row['username'] . " - " . $row["id"]) ?></h4>
                                                                 <button type="button" class="btn-close"
                                                                     data-bs-dismiss="modal"></button>
                                                             </div>
@@ -178,7 +178,7 @@
                                                                         value="<?php echo ($row["id"]) ?>">
                                                                     <div class="form-floating mb-3">
                                                                         <input type="text" class="form-control"
-                                                                            value="<?php echo ($username) ?>" disabled>
+                                                                            value="<?php echo ($row['username']) ?>" disabled>
                                                                         <label for="code">Client Name</label>
                                                                     </div>
                                                                     <div class="form-floating mb-3">

@@ -6,9 +6,5 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../static/images/logo.png">
     <link href="/admin/css/style.min.css" rel="stylesheet">
     <script src="/admin/js/jquery/dist/jquery.min.js"></script>
-    <style>
-        * {
-            user-select: none;
-        }
-    </style>
+    <style>*{user-select: none;}</style>
 </head>
