@@ -1,7 +1,7 @@
 <?php
 session_start();
-$servername = "127.0.0.1";
-$username = "root";
+$servername = "127.0.0.1:3306";
+$username = "form";
 $password = "trysomething";
 $db_name = "form";
 if ($_SESSION["lock"] != "nkcw73to92y87v5i&^TY*&V4COR7ITKKU6F764CI6p6I^V*I%^U&^%KI*V") {

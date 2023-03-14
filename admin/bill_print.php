@@ -17,7 +17,7 @@ if ($result->num_rows > 0) {
     <div id="logo">
       <img src="/static/images/logo.png">
       <div id="company" class="clearfix">
-        <div>SRT</div>
+        <div>SRT Integrated Form</div>
         <div>1/49,Main Road<br>Adichapuram<br>Mannargudi</div>
         <div>(+91) 9444858664</div>
       </div>
@@ -75,7 +75,7 @@ if ($result->num_rows > 0) {
 } ?>
   </main>
   <script>
-    // print()
+    print()
   </script>
 </body>
 </html>

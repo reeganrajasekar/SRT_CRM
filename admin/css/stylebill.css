@@ -1,14 +1,15 @@
 
 @media print {
   @page {
-    size: A5 landscape;
+    size: A4 portrait;
     max-height:100%;
     max-width:100%;
     margin:0;
+    padding:20px !important;
   }
   body{
     margin:0;
-    padding:20px
+    padding:20px !important;
   }
 }
 a {
